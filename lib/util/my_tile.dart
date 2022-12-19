@@ -5,11 +5,25 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/model/equipment_model.dart';
 import '../constraints.dart';
+import '../model/category_model.dart';
+import '../providers/category_provider.dart';
 import '../providers/equipment_provider.dart';
 
-class MyTile extends StatelessWidget {
+class MyTile extends StatefulWidget {
   final Equipment item;
-  MyTile({required this.item, super.key});
+  const MyTile({required this.item, super.key});
+
+  @override
+  State<MyTile> createState() => _MyTileState();
+}
+
+class _MyTileState extends State<MyTile> {
+  @override
+  void initState() {
+    super.initState();
+
+    // category = ;
+  }
 
   Widget build(BuildContext context) {
     return Container(
@@ -74,7 +88,7 @@ class MyTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(item.image),
+                        image: NetworkImage(widget.item.image),
                       ),
                     ),
                   ),
@@ -89,7 +103,16 @@ class MyTile extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 2),
                             child: Text(
-                              'category',
+                              context
+                                  .watch<CategoryProvider>()
+                                  .categories
+                                  .firstWhere(
+                                    (element) =>
+                                        element.id == widget.item.category,
+                                    orElse: () => Category(
+                                        id: 2, title: 'other', image: 'image'),
+                                  )
+                                  .title,
                               style: TextStyle(
                                 color: Colors.grey[800],
                                 fontSize: 12,
@@ -116,7 +139,7 @@ class MyTile extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        item.title,
+                        widget.item.title,
                         style: TextStyle(
                           fontSize: 17,
                           color: Colors.black87,
