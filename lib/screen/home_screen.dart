@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:provider/provider.dart';
 import 'package:rental_app/constraints.dart';
+import 'package:rental_app/providers/equipment_provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../util/my_tile.dart';
@@ -95,9 +97,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Expanded(
                 child: ListView.builder(
-                  itemCount: 10,
+                  itemCount:
+                      context.watch<EquipmentProvider>().equipment.length,
                   itemBuilder: (context, index) {
-                    return MyTile();
+                    return MyTile(
+                      item: context.watch<EquipmentProvider>().equipment[index],
+                    );
                   },
                 ),
               ),

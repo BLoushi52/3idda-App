@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:rental_app/model/equipment_model.dart';
 import '../constraints.dart';
 import '../providers/equipment_provider.dart';
 
 class MyTile extends StatelessWidget {
-  const MyTile({super.key});
+  final Equipment item;
+  MyTile({required this.item, super.key});
 
-  @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
@@ -73,8 +74,7 @@ class MyTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                            'https://www.incimages.com/uploaded_files/image/1920x1080/getty_494605768_2000133320009280151_316966.jpg'),
+                        image: NetworkImage(item.image),
                       ),
                     ),
                   ),
@@ -89,7 +89,7 @@ class MyTile extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 2),
                             child: Text(
-                              'Category',
+                              'category',
                               style: TextStyle(
                                 color: Colors.grey[800],
                                 fontSize: 12,
@@ -116,7 +116,7 @@ class MyTile extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        'Item Name',
+                        item.title,
                         style: TextStyle(
                           fontSize: 17,
                           color: Colors.black87,

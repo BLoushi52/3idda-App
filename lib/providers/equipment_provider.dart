@@ -7,7 +7,7 @@ import '../client.dart';
 class EquipmentProvider extends ChangeNotifier {
   List<Equipment> equipment = [];
 
-  bool isLoading = true;
+  bool isLoading = false;
 
   EquipmentProvider() {
     getEquipment();
@@ -23,13 +23,13 @@ class EquipmentProvider extends ChangeNotifier {
       // await a future (delay: 1 second)
       // await Future.delayed(Duration(seconds: 1));
 
-      var response = await Client.dio.get("/api/equipment/");
+      var response = await Client.dio.get("/api/item/");
 
       var body = response.data as List;
 
       equipment = body
           .map(
-            (json) => Equipment.fromJson(json),
+            (json) => Equipment.fromMap(json),
           )
           .toList();
 

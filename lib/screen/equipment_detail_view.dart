@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../model/equipment_model.dart';
-
 class EquipmentDetail extends StatelessWidget {
   const EquipmentDetail({super.key});
   // final Equipment equipment;

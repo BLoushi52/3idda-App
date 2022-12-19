@@ -1,32 +1,73 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
 class Equipment {
-  int? id;
+  int id;
   String title;
-  String user;
-  String category;
-  String description;
-  String ingredients;
-  String instructions;
   String image;
+  int category;
+  Equipment({
+    required this.id,
+    required this.title,
+    required this.image,
+    required this.category,
+  });
 
-  Equipment(
-      {this.id,
-      required this.title,
-      required this.user,
-      required this.category,
-      required this.description,
-      required this.ingredients,
-      required this.instructions,
-      required this.image});
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'image': image,
+      'category': category,
+    };
+  }
 
-  Equipment.fromJson(Map<String, dynamic> json)
-      : id = json['id'] as int?,
-        title = json['title'] as String,
-        user = json['user'] as String,
-        category = json['category'] as String,
-        description = json['description'] as String,
-        ingredients = json['ingredients'] as String,
-        instructions = json['instructions'] as String,
-        image = json['image'] as String;
+  factory Equipment.fromMap(Map<String, dynamic> map) {
+    return Equipment(
+      id: map['id']?.toInt() ?? 0,
+      title: map['title'] ?? '',
+      image: map['image'] ?? '',
+      category: map['category']?.toInt() ?? 0,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Equipment.fromJson(String source) =>
+      Equipment.fromMap(json.decode(source));
 }
+
+// class Equipment {
+//   int id;
+//   String title;
+//   // int category;
+//   String image;
+//   Equipment({
+//     required this.id,
+//     required this.title,
+//     // required this.category,
+//     required this.image,
+//   });
+
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'id': id,
+//       'title': title,
+//       // 'category': category,
+//       'image': image,
+//     };
+//   }
+
+//   factory Equipment.fromMap(Map<String, dynamic> map) {
+//     return Equipment(
+//       id: map['id']?.toInt() ?? 0,
+//       title: map['title'] ?? '',
+//       // category: map['category']?.toInt() ?? 0,
+//       image: map['image'] ?? '',
+//     );
+//   }
+
+//   String toJson() => json.encode(toMap());
+
+//   factory Equipment.fromJson(String source) =>
+//       Equipment.fromMap(json.decode(source));
+// }
