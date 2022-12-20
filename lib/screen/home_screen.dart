@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Future<void> _handleRefresh() async {
-    return await Future.delayed(Duration(seconds: 1));
+    return await context.read<ItemProvider>().loadItems();
   }
 
   // TextEditingController? textEditingController = TextEditingController();
