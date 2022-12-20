@@ -121,6 +121,7 @@ class _MyTileState extends State<MyTile> {
                               ),
                             ),
                           ),
+                          Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(left: 175, right: 5),
                             child: Icon(
@@ -136,6 +137,9 @@ class _MyTileState extends State<MyTile> {
                               fontSize: 14,
                             ),
                           ),
+                          SizedBox(
+                            width: 10,
+                          )
                         ],
                       ),
                       Text(
