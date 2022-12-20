@@ -3,13 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:rental_app/model/item_model.dart';
 import '../constraints.dart';
-import '../providers/equipment_provider.dart';
+import '../model/category_model.dart';
+import '../providers/category_provider.dart';
+import '../providers/item_provider.dart';
 
-class MyTile extends StatelessWidget {
-  const MyTile({super.key});
+class MyTile extends StatefulWidget {
+  final Item item;
+  const MyTile({required this.item, super.key});
 
   @override
+  State<MyTile> createState() => _MyTileState();
+}
+
+class _MyTileState extends State<MyTile> {
+  @override
+  void initState() {
+    super.initState();
+
+    // category = ;
+  }
+
   Widget build(BuildContext context) {
     return Container(
       child: Column(
@@ -22,7 +37,7 @@ class MyTile extends StatelessWidget {
                 SlidableAction(
                   label: 'Edit',
                   onPressed: ((context) async {
-                    await context.read<EquipmentProvider>();
+                    await context.read<ItemProvider>();
                     // .editEquipment; //*    <---------  EDIT RECIPE
                   }),
                   backgroundColor: Colors.blue,
@@ -37,7 +52,7 @@ class MyTile extends StatelessWidget {
                 SlidableAction(
                   label: 'Delete',
                   onPressed: ((context) async {
-                    await context.read<EquipmentProvider>();
+                    await context.read<ItemProvider>();
                     // .deleteRecipe; //*    <---------  DELETE RECIPE
                   }),
                   backgroundColor: Colors.red,
@@ -73,8 +88,7 @@ class MyTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                            'https://www.incimages.com/uploaded_files/image/1920x1080/getty_494605768_2000133320009280151_316966.jpg'),
+                        image: NetworkImage(widget.item.image),
                       ),
                     ),
                   ),
@@ -89,7 +103,16 @@ class MyTile extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 2),
                             child: Text(
-                              'Category',
+                              context
+                                  .watch<CategoryProvider>()
+                                  .categories
+                                  .firstWhere(
+                                    (element) =>
+                                        element.id == widget.item.category,
+                                    orElse: () => Category(
+                                        id: 2, title: 'other', image: 'image'),
+                                  )
+                                  .title,
                               style: TextStyle(
                                 color: Colors.grey[800],
                                 fontSize: 12,
@@ -98,6 +121,7 @@ class MyTile extends StatelessWidget {
                               ),
                             ),
                           ),
+                          Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(left: 175, right: 5),
                             child: Icon(
@@ -113,10 +137,13 @@ class MyTile extends StatelessWidget {
                               fontSize: 14,
                             ),
                           ),
+                          SizedBox(
+                            width: 10,
+                          )
                         ],
                       ),
                       Text(
-                        'Item Name',
+                        widget.item.title,
                         style: TextStyle(
                           fontSize: 17,
                           color: Colors.black87,
@@ -125,7 +152,7 @@ class MyTile extends StatelessWidget {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                        widget.item.description,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -139,7 +166,7 @@ class MyTile extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "KD 3",
+                            "KD ${widget.item.price}",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
