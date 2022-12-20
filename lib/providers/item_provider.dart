@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:rental_app/model/equipment_model.dart';
+import 'package:rental_app/model/item_model.dart';
 import '../client.dart';
 
-class EquipmentProvider extends ChangeNotifier {
-  List<Equipment> equipment = [];
+class ItemProvider extends ChangeNotifier {
+  List<Item> items = [];
 
   bool isLoading = false;
 
-  EquipmentProvider() {
-    getEquipment();
+  ItemProvider() {
+    loadItems();
   }
 
-  Future<void> getEquipment() async {
+  Future<void> loadItems() async {
     try {
       isLoading = true;
       notifyListeners();
 
-      equipment.clear();
+      items.clear();
 
       // await a future (delay: 1 second)
       // await Future.delayed(Duration(seconds: 1));
@@ -25,9 +25,9 @@ class EquipmentProvider extends ChangeNotifier {
 
       var body = response.data as List;
 
-      equipment = body
+      items = body
           .map(
-            (json) => Equipment.fromMap(json),
+            (json) => Item.fromMap(json),
           )
           .toList();
 
@@ -38,10 +38,10 @@ class EquipmentProvider extends ChangeNotifier {
     }
   }
 
-  void deleteEquipment(int id) async {
+  void deleteItem(int id) async {
     await Client.dio.delete("/equipment/$id");
 
-    getEquipment();
+    loadItems();
     notifyListeners();
   }
 

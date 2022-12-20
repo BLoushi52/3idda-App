@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:rental_app/model/equipment_model.dart';
+import 'package:rental_app/model/item_model.dart';
 import '../constraints.dart';
 import '../model/category_model.dart';
 import '../providers/category_provider.dart';
-import '../providers/equipment_provider.dart';
+import '../providers/item_provider.dart';
 
 class MyTile extends StatefulWidget {
-  final Equipment item;
+  final Item item;
   const MyTile({required this.item, super.key});
 
   @override
@@ -37,7 +37,7 @@ class _MyTileState extends State<MyTile> {
                 SlidableAction(
                   label: 'Edit',
                   onPressed: ((context) async {
-                    await context.read<EquipmentProvider>();
+                    await context.read<ItemProvider>();
                     // .editEquipment; //*    <---------  EDIT RECIPE
                   }),
                   backgroundColor: Colors.blue,
@@ -52,7 +52,7 @@ class _MyTileState extends State<MyTile> {
                 SlidableAction(
                   label: 'Delete',
                   onPressed: ((context) async {
-                    await context.read<EquipmentProvider>();
+                    await context.read<ItemProvider>();
                     // .deleteRecipe; //*    <---------  DELETE RECIPE
                   }),
                   backgroundColor: Colors.red,

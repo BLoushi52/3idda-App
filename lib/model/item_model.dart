@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class Equipment {
+class Item {
   int id;
   int category;
   String title;
   String description;
   double price;
   String image;
-  Equipment({
+  Item({
     required this.id,
     required this.category,
     required this.title,
@@ -27,8 +27,8 @@ class Equipment {
     };
   }
 
-  factory Equipment.fromMap(Map<String, dynamic> map) {
-    return Equipment(
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
       id: map['id']?.toInt() ?? 0,
       category: map['category']?.toInt() ?? 0,
       title: map['title'] ?? '',
@@ -40,6 +40,5 @@ class Equipment {
 
   String toJson() => json.encode(toMap());
 
-  factory Equipment.fromJson(String source) =>
-      Equipment.fromMap(json.decode(source));
+  factory Item.fromJson(String source) => Item.fromMap(json.decode(source));
 }

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
 import 'package:rental_app/providers/category_provider.dart';
-import 'package:rental_app/providers/equipment_provider.dart';
+import 'package:rental_app/providers/item_provider.dart';
 
 import 'screen/home_screen.dart';
 
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => EquipmentProvider()),
+        ChangeNotifierProvider(create: (context) => ItemProvider()),
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
         ChangeNotifierProvider(create: (context) => authProvider),
       ],
