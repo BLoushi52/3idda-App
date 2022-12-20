@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'widgets/login_button.dart';
-import 'widgets/my_textfield.dart';
-import 'widgets/square_tile.dart';
+import 'package:provider/provider.dart';
+import '../../widgets/login_button.dart';
+import '../../widgets/my_textfield.dart';
+import '../../widgets/square_tile.dart';
+import '../providers/auth_provider.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -14,23 +14,12 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
 
   // sign user in method
-  void login() {}
+  // void login() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        title: Text(
-          'Log In',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.yellow[700],
-      ),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -94,11 +83,29 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 35),
+              Padding(
+                padding: const EdgeInsets.only(top: 22),
+                child: LoginButton(
+                  onTap: () async {
+                    var success = await context.read<AuthProvider>().login(
+                        username: usernameController.text,
+                        password: passwordController.text);
+                    print(success);
+                    if (success) {
+                      context.go('/home');
+                      print("login successful"); // for testing
+                    } else
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text("login unsuccessful"),
+                        ),
+                      );
+                  },
+                ),
+              ),
 
               // sign in button
-              LoginButton(
-                onTap: login,
-              ),
 
               const SizedBox(height: 50),
 
@@ -159,7 +166,7 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(width: 4),
                   GestureDetector(
                     onTap: () {
-                      context.push('/signup');
+                      context.replace('/register');
                     },
                     child: const Text(
                       'Register now',

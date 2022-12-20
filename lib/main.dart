@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
 import 'package:rental_app/screen/login_page.dart';
-import 'package:rental_app/screen/widgets/splash_screen.dart';
+import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
 import 'screen/home_screen.dart';
-import 'screen/signup_page.dart';
+import 'screen/register_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,8 +55,8 @@ final router = GoRouter(
       builder: (context, state) => LoginPage(),
     ),
     GoRoute(
-      path: '/signup',
-      builder: (context, state) => SignupPage(),
+      path: '/register',
+      builder: (context, state) => RegisterPage(),
     ),
   ],
 );

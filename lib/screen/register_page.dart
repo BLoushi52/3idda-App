@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../widgets/my_textfield.dart';
+import '../../widgets/register_button.dart';
 
-import 'widgets/login_button.dart';
-import 'widgets/my_textfield.dart';
-import 'widgets/signup_button.dart';
-import 'widgets/square_tile.dart';
-
-class SignupPage extends StatelessWidget {
-  SignupPage({super.key});
+class RegisterPage extends StatelessWidget {
+  RegisterPage({super.key});
 
   // text editing controllers
   final usernameController = TextEditingController();
@@ -20,7 +17,7 @@ class SignupPage extends StatelessWidget {
   final civilIDNumberController = TextEditingController();
 
   // sign user in method
-  void signup() {}
+  void register() {}
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +26,7 @@ class SignupPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
         title: Text(
-          'Sign Up',
+          'Register',
           style: TextStyle(
             color: Colors.black,
             fontSize: 25,
@@ -227,7 +224,7 @@ class SignupPage extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   // sign in button
-                  SignupButton(
+                  RegisterButton(
                     onTap: () {
                       context.push('/home');
                     },
