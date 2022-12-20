@@ -212,7 +212,7 @@ Widget buildSheet(BuildContext cc) => DraggableScrollableSheet(
       initialChildSize: 0.9,
       minChildSize: 0.6,
       maxChildSize: 0.9,
-      builder: (_, controller) => Container(
+      builder: (context, controller) => Container(
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.vertical(
@@ -230,7 +230,14 @@ Widget buildSheet(BuildContext cc) => DraggableScrollableSheet(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
-                    child: Icon(Icons.arrow_back),
+                    child: GestureDetector(
+                      child: Icon(
+                        Icons.arrow_back,
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
                   ),
                   Expanded(
                       child: SizedBox(
@@ -245,6 +252,12 @@ Widget buildSheet(BuildContext cc) => DraggableScrollableSheet(
             ),
             SizedBox(
               height: 10,
+            ),
+            //*                          <----------  IMAGE CAROUSEL
+            SizedBox(
+              height: 200,
+              width: double.infinity,
+              // child:
             ),
             Container(
               padding: const EdgeInsets.all(16),
@@ -450,7 +463,7 @@ Widget buildSheet(BuildContext cc) => DraggableScrollableSheet(
                             backgroundColor: Colors.yellow[700],
                           ),
                           onPressed: () {
-                            Navigator.of(_).pop(); //* <----- ASK FOR HELP
+                            Navigator.of(context).pop(); //* <----- ASK FOR HELP
                           },
                           child: Text(
                             'Rent Now',
