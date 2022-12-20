@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
+import 'package:rental_app/screen/login_page.dart';
+import 'package:rental_app/screen/widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
-
 import 'screen/home_screen.dart';
+import 'screen/signup_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,11 +22,41 @@ void main() async {
 }
 
 final router = GoRouter(
-  initialLocation: '/home',
+  initialLocation: '/splash',
   routes: [
     GoRoute(
+      path: '/splash',
+      builder: (context, state) => SplashScreen(),
+    ),
+    // GoRoute(
+    //   path: '/home',
+    //   builder: (context, state) => HomeScreen(),
+    // ),
+
+    GoRoute(
       path: '/home',
-      builder: (context, state) => HomeScreen(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: HomeScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // Change the opacity of the screen using a Curve based on the the animation's
+            // value
+            return FadeTransition(
+              opacity: CurveTween(curve: Curves.easeInBack).animate(animation),
+              child: child,
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => LoginPage(),
+    ),
+    GoRoute(
+      path: '/signup',
+      builder: (context, state) => SignupPage(),
     ),
   ],
 );
