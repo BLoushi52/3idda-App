@@ -8,6 +8,7 @@ import 'package:rental_app/screen/login_page.dart';
 import 'package:rental_app/screen/pages/add_item_page.dart';
 import 'package:rental_app/screen/pages/edit_item_page.dart';
 import 'package:rental_app/screen/pages/equipment.dart';
+import 'package:rental_app/screen/pages/myitems.dart';
 import 'package:rental_app/screen/pages/myitems_details.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
@@ -66,7 +67,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/itemdetails',
-      builder: (context, state) => DetailsItem(
+      builder: (context, state) => ItemDetails(
         item: state.extra as Item,
       ),
     ),
@@ -76,7 +77,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/myitem',
-      builder: (context, state) => MyItemPage(),
+      builder: (context, state) => MyEquip(),
     ),
     GoRoute(
       path: '/edititem',
