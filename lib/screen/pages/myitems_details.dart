@@ -5,16 +5,16 @@ import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 
-class DetailsItem extends StatefulWidget {
-  DetailsItem({super.key, required this.item});
+class ItemDetails extends StatefulWidget {
+  ItemDetails({super.key, required this.item});
 
   final Item item;
 
   @override
-  State<DetailsItem> createState() => _DetailsItemState();
+  State<ItemDetails> createState() => _ItemDetailsState();
 }
 
-class _DetailsItemState extends State<DetailsItem> {
+class _ItemDetailsState extends State<ItemDetails> {
   @override
   Category? category;
 

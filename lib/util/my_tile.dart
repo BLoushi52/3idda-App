@@ -31,53 +31,9 @@ class _MyTileState extends State<MyTile> {
       child: Column(
         children: [
           Slidable(
-            startActionPane: ActionPane(
-              extentRatio: 0.3,
-              motion: DrawerMotion(),
-              children: [
-                SlidableAction(
-                  label: 'Edit',
-                  onPressed: ((context) async {
-                    await context.read<ItemProvider>();
-                    // .editEquipment; //*    <---------  EDIT RECIPE
-                  }),
-                  backgroundColor: Colors.blue,
-                  icon: Icons.edit,
-                ),
-              ],
-            ),
-            endActionPane: ActionPane(
-              extentRatio: 0.3,
-              motion: DrawerMotion(),
-              children: [
-                SlidableAction(
-                  label: 'Delete',
-                  onPressed: ((context) async {
-                    await context.read<ItemProvider>();
-                    // .deleteRecipe; //*    <---------  DELETE RECIPE
-                  }),
-                  backgroundColor: Colors.red,
-                  icon: Icons.delete,
-                ),
-              ],
-            ),
             child: CupertinoButton(
               onPressed: () {
-                showModalBottomSheet(
-                  backgroundColor: Colors.transparent,
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (context) => Stack(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          context.pop();
-                        },
-                      ),
-                      buildSheet(context),
-                    ],
-                  ),
-                );
+                context.push('/itemdetails', extra: widget.item);
               },
               child: Row(
                 children: [
