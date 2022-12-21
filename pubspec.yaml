@@ -50,6 +50,7 @@ dependencies:
   flutter_animate: ^2.0.1
   get: ^4.6.5
   google_nav_bar: ^5.0.6
+  image_picker: ^0.8.6
 
 dev_dependencies:
   flutter_test:
