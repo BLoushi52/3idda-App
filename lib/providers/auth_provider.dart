@@ -7,6 +7,7 @@ import '../client.dart';
 
 class AuthProvider extends ChangeNotifier {
   String? username;
+  String? firstName;
 
   Future<bool> register({
     required String username,
@@ -55,8 +56,8 @@ class AuthProvider extends ChangeNotifier {
 
     var tokenMap = JwtDecoder.decode(token);
     username = tokenMap['username'];
+    firstName = tokenMap['first_name'];
     notifyListeners();
-    print(username); // for testing
     return true;
   }
 

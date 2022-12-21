@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
+import 'package:rental_app/screen/item_detail.dart';
 import 'package:rental_app/screen/login_page.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
+import 'model/item_model.dart';
 import 'screen/home_screen.dart';
 import 'screen/register_page.dart';
 
@@ -57,6 +59,12 @@ final router = GoRouter(
     GoRoute(
       path: '/register',
       builder: (context, state) => RegisterPage(),
+    ),
+    GoRoute(
+      path: '/item_detail',
+      builder: (context, state) => ItemDetail(
+        item: state.extra as Item,
+      ),
     ),
   ],
 );

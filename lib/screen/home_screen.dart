@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'package:provider/provider.dart';
 import 'package:rental_app/constraints.dart';
-import 'package:rental_app/providers/item_provider.dart';
 import 'package:rental_app/screen/pages/Home.dart';
 import 'package:rental_app/screen/pages/account.dart';
 import 'package:rental_app/screen/pages/equipment.dart';
 import 'package:rental_app/screen/pages/rentals.dart';
-import 'package:rental_app/screen/widgets/user_drawer.dart';
+import 'package:rental_app/widgets/my_drawe.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
-import '../util/my_tile.dart';
-import 'widgets/guest_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -111,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             }
                           })))),
           drawer:
-              MyUserDrawer(), //*    <----- CHANGE DRAWER WIDGET IF GUEST/SIGNED IN
+              MyDrawer(), //*    <----- CHANGE DRAWER WIDGET IF GUEST/SIGNED IN
           // bottomNavigationBar: _bottomNav(sizingInformation), //* <-- OLD BOTTOM NAV
           // bottomNavigationBar: BottomNavigationBar(   //*  <-- NAV BAR 2
           //   selectedItemColor: Colors.black,
