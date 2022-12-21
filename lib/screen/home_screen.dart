@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     UserHome(),
     UserRentals(),
-    UserEquipment(),
+    MyItemPage(),
     UserAccount(),
   ];
 

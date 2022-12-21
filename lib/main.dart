@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/auth_provider.dart';
-import 'package:rental_app/screen/item_detail.dart';
+import 'package:rental_app/providers/myitems_provider.dart';
 import 'package:rental_app/screen/login_page.dart';
+import 'package:rental_app/screen/pages/add_item_page.dart';
+import 'package:rental_app/screen/pages/edit_item_page.dart';
+import 'package:rental_app/screen/pages/equipment.dart';
+import 'package:rental_app/screen/pages/myitems_details.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
@@ -61,8 +66,22 @@ final router = GoRouter(
       builder: (context, state) => RegisterPage(),
     ),
     GoRoute(
-      path: '/item_detail',
-      builder: (context, state) => ItemDetail(
+      path: '/itemdetails',
+      builder: (context, state) => DetailsItem(
+        item: state.extra as Item,
+      ),
+    ),
+    GoRoute(
+      path: '/additem',
+      builder: (context, state) => AddItemPage(),
+    ),
+    GoRoute(
+      path: '/myitem',
+      builder: (context, state) => MyItemPage(),
+    ),
+    GoRoute(
+      path: '/edititem',
+      builder: (context, state) => EditItemPage(
         item: state.extra as Item,
       ),
     ),
@@ -82,6 +101,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ItemProvider()),
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
+        ChangeNotifierProvider(create: (context) => MyItemProvider()),
         ChangeNotifierProvider(create: (context) => authProvider),
       ],
       child: MaterialApp.router(
