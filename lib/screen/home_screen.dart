@@ -12,6 +12,7 @@ import 'package:rental_app/screen/widgets/user_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../util/my_tile.dart';
+import 'widgets/guest_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -65,7 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.yellow[700]),
                     // color: Colors.yellow[700],
                     child: IconButton(
-                      icon: Icon(Icons.shopping_cart_outlined),
+                      icon: Icon(Icons
+                          .notifications_outlined), //* Icon(Icons.notifications_active_outlined)
                       onPressed: () {
                         // Navigator.push(context, route);
                       },
