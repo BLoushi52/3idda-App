@@ -165,7 +165,7 @@ class _EditItemPageState extends State<EditItemPage> {
                             category: value!.id,
                             image: imageFile!,
                             description: descriptionController.text,
-                            price: priceController.text,
+                            price: priceController.text.toString(),
                           );
 
                       context.go('/myitem');
