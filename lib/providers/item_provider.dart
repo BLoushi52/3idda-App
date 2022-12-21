@@ -16,12 +16,12 @@ class ItemProvider extends ChangeNotifier {
       isLoading = true;
       notifyListeners();
 
-      items.clear();
-
       // await a future (delay: 1 second)
       // await Future.delayed(Duration(seconds: 1));
 
       var response = await Client.dio.get("/api/item/");
+
+      items.clear();
 
       var body = response.data as List;
 
