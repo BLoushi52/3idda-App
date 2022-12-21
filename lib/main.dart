@@ -12,6 +12,7 @@ import 'package:rental_app/screen/pages/myitems_details.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
+import 'model/item_model.dart';
 import 'screen/home_screen.dart';
 import 'screen/register_page.dart';
 
