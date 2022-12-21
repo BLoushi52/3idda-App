@@ -10,7 +10,7 @@ class MyGuestDrawer extends StatelessWidget {
       child: Column(children: [
         Padding(
           padding: const EdgeInsets.only(
-            top: 100,
+            top: 115,
             bottom: 50,
           ),
           child: Column(
@@ -24,7 +24,7 @@ class MyGuestDrawer extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                'Hi (username)!',
+                'Hi Guest!',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -33,78 +33,52 @@ class MyGuestDrawer extends StatelessWidget {
             ],
           ),
         ),
-        ListTile(
-          leading: Icon(
-            Icons.home,
-            color: Colors.black,
-          ),
-          title: Text(
-            'D A S H B O A R D',
-            style: TextStyle(
+        GestureDetector(
+          child: ListTile(
+            leading: Icon(
+              Icons.login,
               color: Colors.black,
             ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.list,
-            color: Colors.black,
-          ),
-          title: Text(
-            'O R D E R S',
-            style: TextStyle(
-              color: Colors.black,
+            title: Text(
+              'L O G I N',
+              style: TextStyle(
+                color: Colors.black,
+              ),
             ),
           ),
+          onTap: () {},
         ),
-        ListTile(
-          leading: Icon(
-            Icons.favorite,
-            color: Colors.black,
-          ),
-          title: Text(
-            'F A V O R I T E S',
-            style: TextStyle(
+        GestureDetector(
+          child: ListTile(
+            leading: Icon(
+              Icons.app_registration,
               color: Colors.black,
             ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.menu_book,
-            color: Colors.black,
-          ),
-          title: Text(
-            'A D D R E S S   B O O K',
-            style: TextStyle(
-              color: Colors.black,
+            title: Text(
+              'R E G I S T E R',
+              style: TextStyle(
+                color: Colors.black,
+              ),
             ),
           ),
+          onTap: () {},
         ),
-        ListTile(
-          leading: Icon(
-            Icons.settings,
-            color: Colors.black,
-          ),
-          title: Text(
-            'S E T T I N G S',
-            style: TextStyle(
+        GestureDetector(
+          child: ListTile(
+            leading: Icon(
+              Icons.mail,
               color: Colors.black,
             ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.logout,
-            color: Colors.black,
-          ),
-          title: Text(
-            'L O G O U T',
-            style: TextStyle(
-              color: Colors.black,
+            title: Text(
+              'C O N T A C T    U S',
+              style: TextStyle(
+                color: Colors.black,
+              ),
             ),
           ),
+          onTap: () {},
         ),
+        //
       ]),
     );
   }
