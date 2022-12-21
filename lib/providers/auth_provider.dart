@@ -1,46 +1,46 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../client.dart';
 
 class AuthProvider extends ChangeNotifier {
   String? username;
 
-  Future<bool> signup({
+  Future<bool> register({
     required String username,
     required String password,
+    required String firstName,
+    required String lastName,
+    required String email,
   }) async {
     try {
       var response = await Client.dio.post("/api/register/", data: {
-        "username": username,
-        "password": password,
+        'username': username,
+        'password': password,
+        'first_name': firstName,
+        'last_name': lastName,
+        'email': email,
       });
 
       var token = response.data["access"];
+
       Client.dio.options.headers[HttpHeaders.authorizationHeader] =
           "Bearer $token";
-
-      username = username;
+      this.username = username;
       notifyListeners();
+
       var pref = await SharedPreferences.getInstance();
       await pref.setString("token", token);
-
+      print('register successfully');
       return true;
     } on DioError catch (e) {
-      // e = exception (error)
-      print(e);
-      // print(e.response!.statusCode);
-      // print(e.response!.data);
+      print(e.response!.data);
     } catch (e) {
-      print("unknown error");
-      print('c: $e');
+      print("Unknown Error");
     }
-    notifyListeners();
+
     return false;
   }
 
@@ -48,37 +48,47 @@ class AuthProvider extends ChangeNotifier {
     var pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
 
-    if (token != null && token.isNotEmpty && !JwtDecoder.isExpired(token)) {
-      var tokenMap = JwtDecoder.decode(token);
-      username = tokenMap['username'];
-      notifyListeners();
-      return true;
+    if (token == null || JwtDecoder.isExpired(token)) {
+      print('removed token'); // for testing
+      return false;
     }
 
-    return false;
+    var tokenMap = JwtDecoder.decode(token);
+    username = tokenMap['username'];
+    notifyListeners();
+    print(username); // for testing
+    return true;
   }
 
   Future<bool> login(
       {required String username, required String password}) async {
-    String token;
+    late String token;
     try {
-      Response response = await Client.dio.post('api/login/', data: {
+      Response response = await Client.dio.post('/api/login/', data: {
         "username": username,
         "password": password,
       });
       token = response.data["access"];
-      Client.dio.options.headers[HttpHeaders.authorizationHeader] =
-          "Bearer $token";
-
+      Client.dio.options.headers["Authorization"] = "Bearer $token";
       var ref = await SharedPreferences.getInstance();
       ref.setString("token", token);
-      username = username;
+      this.username = username;
       notifyListeners();
       return true;
-    } on DioError catch (e) {
-      print(e);
+    } on DioError catch (error) {
+      print(error);
     }
     notifyListeners();
+
     return false;
+  }
+
+  void logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove("token");
+    this.hasToken(); // for testing
+    // token = "";
+    this.username = null;
+    notifyListeners();
   }
 }
