@@ -324,8 +324,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         controller: emailController,
                         obscureText: false,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Required field";
+                          RegExp regex = RegExp(
+                              r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                              r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                              r"{0,253}[a-zA-Z0-9])?)*$");
+                          if (value == null ||
+                              value.isEmpty ||
+                              !regex.hasMatch(value)) {
+                            return 'Enter a valid email address';
                           }
                           return null;
                         },
