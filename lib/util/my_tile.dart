@@ -27,6 +27,7 @@ class _MyTileState extends State<MyTile> {
 
   Widget build(BuildContext context) {
     return Container(
+      // height: 133,
       child: Column(
         children: [
           Slidable(
@@ -81,8 +82,8 @@ class _MyTileState extends State<MyTile> {
               child: Row(
                 children: [
                   Container(
-                    height: 100, //*  <------------ Can reduce to 90/90
-                    width: 100, //*   <------------ if 'Category' is removed.
+                    height: 95, //*  <------------ Can reduce to 90/90
+                    width: 95, //*   <------------ if 'Category' is removed.
                     decoration: BoxDecoration(
                       color: Colors.blueGrey,
                       borderRadius: BorderRadius.circular(10),
