@@ -11,11 +11,17 @@ class AuthProvider extends ChangeNotifier {
   Future<bool> register({
     required String username,
     required String password,
+    required String firstName,
+    required String lastName,
+    required String email,
   }) async {
     try {
-      var response = await Client.dio.post("/register/", data: {
+      var response = await Client.dio.post("/api/register/", data: {
         'username': username,
         'password': password,
+        'first_name': firstName,
+        'last_name': lastName,
+        'email': email,
       });
 
       var token = response.data["access"];
