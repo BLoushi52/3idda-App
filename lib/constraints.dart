@@ -3,112 +3,112 @@ import 'package:flutter/material.dart';
 
 var myDefaultBackground = Colors.grey[300];
 
-var myAppBar = AppBar(
-  backgroundColor: Colors.yellow,
-);
+// var myAppBar = AppBar(
+//   backgroundColor: Colors.yellow,
+// );
 
-var myDrawer = Drawer(
-  backgroundColor: Colors.yellow[700], //*   <------ Previously grey[300]
-  child: Column(children: [
-    Padding(
-      padding: const EdgeInsets.only(
-        top: 100,
-        bottom: 50,
-      ),
-      child: Column(
-        children: [
-          Icon(
-            Icons.person,
-            size: 75,
-            color: Colors.black,
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            'Hi (username)!',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    ),
-    ListTile(
-      leading: Icon(
-        Icons.home,
-        color: Colors.black,
-      ),
-      title: Text(
-        'D A S H B O A R D',
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-    ),
-    ListTile(
-      leading: Icon(
-        Icons.list,
-        color: Colors.black,
-      ),
-      title: Text(
-        'O R D E R S',
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-    ),
-    ListTile(
-      leading: Icon(
-        Icons.favorite,
-        color: Colors.black,
-      ),
-      title: Text(
-        'F A V O R I T E S',
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-    ),
-    ListTile(
-      leading: Icon(
-        Icons.menu_book,
-        color: Colors.black,
-      ),
-      title: Text(
-        'A D D R E S S   B O O K',
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-    ),
-    ListTile(
-      leading: Icon(
-        Icons.settings,
-        color: Colors.black,
-      ),
-      title: Text(
-        'S E T T I N G S',
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-    ),
-    ListTile(
-      leading: Icon(
-        Icons.logout,
-        color: Colors.black,
-      ),
-      title: Text(
-        'L O G O U T',
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-    ),
-  ]),
-);
+// var myDrawer = Drawer(
+//   backgroundColor: Colors.yellow[700], //*   <------ Previously grey[300]
+//   child: Column(children: [
+//     Padding(
+//       padding: const EdgeInsets.only(
+//         top: 100,
+//         bottom: 50,
+//       ),
+//       child: Column(
+//         children: [
+//           Icon(
+//             Icons.person,
+//             size: 75,
+//             color: Colors.black,
+//           ),
+//           SizedBox(
+//             height: 5,
+//           ),
+//           Text(
+//             'Hi (username)!',
+//             style: TextStyle(
+//               fontSize: 20,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//     ListTile(
+//       leading: Icon(
+//         Icons.home,
+//         color: Colors.black,
+//       ),
+//       title: Text(
+//         'D A S H B O A R D',
+//         style: TextStyle(
+//           color: Colors.black,
+//         ),
+//       ),
+//     ),
+//     ListTile(
+//       leading: Icon(
+//         Icons.list,
+//         color: Colors.black,
+//       ),
+//       title: Text(
+//         'O R D E R S',
+//         style: TextStyle(
+//           color: Colors.black,
+//         ),
+//       ),
+//     ),
+//     ListTile(
+//       leading: Icon(
+//         Icons.favorite,
+//         color: Colors.black,
+//       ),
+//       title: Text(
+//         'F A V O R I T E S',
+//         style: TextStyle(
+//           color: Colors.black,
+//         ),
+//       ),
+//     ),
+//     ListTile(
+//       leading: Icon(
+//         Icons.menu_book,
+//         color: Colors.black,
+//       ),
+//       title: Text(
+//         'A D D R E S S   B O O K',
+//         style: TextStyle(
+//           color: Colors.black,
+//         ),
+//       ),
+//     ),
+//     ListTile(
+//       leading: Icon(
+//         Icons.settings,
+//         color: Colors.black,
+//       ),
+//       title: Text(
+//         'S E T T I N G S',
+//         style: TextStyle(
+//           color: Colors.black,
+//         ),
+//       ),
+//     ),
+//     ListTile(
+//       leading: Icon(
+//         Icons.logout,
+//         color: Colors.black,
+//       ),
+//       title: Text(
+//         'L O G O U T',
+//         style: TextStyle(
+//           color: Colors.black,
+//         ),
+//       ),
+//     ),
+//   ]),
+// );
 
 TextEditingController? textEditingController = TextEditingController();
 
@@ -145,72 +145,10 @@ var mySearch = Padding(
   ),
 );
 
-var myBox = Row(
-  children: [
-    buildCard(),
-    SizedBox(width: 12),
-    buildCard(),
-    SizedBox(width: 12),
-    buildCard(),
-    SizedBox(width: 12),
-  ],
-);
-
-Widget buildCard() => Container(
-      width: 200,
-      height: 200,
-      color: Colors.blue[900],
-      child: Padding(
-        padding: const EdgeInsets.only(left: 12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // SizedBox(
-            //   height: 85,
-            // ),
-            Text(
-              'New Item',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.grey[300],
-              ),
-            ),
-            SizedBox(
-              height: 2,
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.location_pin,
-                  color: Colors.grey[300],
-                  size: 11,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 3),
-                  child: Text(
-                    'Kuwait',
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Colors.grey[300],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 12,
-            ),
-          ],
-        ),
-      ),
-    );
-
 Widget buildSheet(BuildContext cc) => DraggableScrollableSheet(
-      initialChildSize: 0.9,
+      initialChildSize: 0.94,
       minChildSize: 0.6,
-      maxChildSize: 0.9,
+      maxChildSize: 0.94,
       builder: (context, controller) => Container(
         decoration: BoxDecoration(
           color: Colors.grey[300],

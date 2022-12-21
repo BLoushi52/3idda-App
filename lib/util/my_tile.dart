@@ -27,6 +27,7 @@ class _MyTileState extends State<MyTile> {
 
   Widget build(BuildContext context) {
     return Container(
+      // height: 133,
       child: Column(
         children: [
           Slidable(
@@ -81,8 +82,8 @@ class _MyTileState extends State<MyTile> {
               child: Row(
                 children: [
                   Container(
-                    height: 100, //*  <------------ Can reduce to 90/90
-                    width: 100, //*   <------------ if 'Category' is removed.
+                    height: 95, //*  <------------ Can reduce to 90/90
+                    width: 95, //*   <------------ if 'Category' is removed.
                     decoration: BoxDecoration(
                       color: Colors.blueGrey,
                       borderRadius: BorderRadius.circular(10),
@@ -99,6 +100,7 @@ class _MyTileState extends State<MyTile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(bottom: 2),
@@ -122,13 +124,10 @@ class _MyTileState extends State<MyTile> {
                             ),
                           ),
                           Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 175, right: 5),
-                            child: Icon(
-                              Icons.star,
-                              color: Colors.yellow[700],
-                              size: 19,
-                            ),
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow[700],
+                            size: 19,
                           ),
                           Text(
                             '3.5',
