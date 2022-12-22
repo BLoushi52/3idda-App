@@ -5,7 +5,7 @@ import 'package:rental_app/screen/pages/account.dart';
 import 'package:rental_app/screen/pages/Home.dart';
 import 'package:rental_app/screen/pages/myitems.dart';
 import 'package:rental_app/screen/pages/myorder.dart';
-import 'package:rental_app/widgets/my_drawe.dart';
+import 'package:rental_app/widgets/my_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeScreen extends StatefulWidget {
