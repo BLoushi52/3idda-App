@@ -57,6 +57,7 @@ class AuthProvider extends ChangeNotifier {
     var tokenMap = JwtDecoder.decode(token);
     username = tokenMap['username'];
     firstName = tokenMap['first_name'];
+    print('first name: ${firstName}');
     notifyListeners();
     return true;
   }
@@ -74,6 +75,7 @@ class AuthProvider extends ChangeNotifier {
       var ref = await SharedPreferences.getInstance();
       ref.setString("token", token);
       this.username = username;
+      this.firstName = firstName;
       notifyListeners();
       return true;
     } on DioError catch (error) {
