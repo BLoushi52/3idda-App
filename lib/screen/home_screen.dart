@@ -3,7 +3,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:rental_app/constraints.dart';
 import 'package:rental_app/screen/pages/Home.dart';
 import 'package:rental_app/screen/pages/account.dart';
-import 'package:rental_app/screen/pages/equipment.dart';
+import 'package:rental_app/screen/old%20pages/equipment.dart';
 import 'package:rental_app/screen/pages/myitems.dart';
 import 'package:rental_app/screen/pages/myorder.dart';
 import 'package:rental_app/screen/pages/rentals.dart';
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     UserHome(),
     MyOrderView(),
-    MyEquip(),
+    MyItems(),
     UserAccount(),
   ];
 

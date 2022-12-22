@@ -7,14 +7,14 @@ import 'package:rental_app/util/my_item.dart';
 
 import '../../constraints.dart';
 
-class MyEquip extends StatefulWidget {
-  const MyEquip({super.key});
+class MyItems extends StatefulWidget {
+  const MyItems({super.key});
 
   @override
-  State<MyEquip> createState() => _MyEquipState();
+  State<MyItems> createState() => _MyItemsState();
 }
 
-class _MyEquipState extends State<MyEquip> {
+class _MyItemsState extends State<MyItems> {
   Future<void> _handleRefresh() async {
     return await context.read<MyItemProvider>().loadMyItems();
   }

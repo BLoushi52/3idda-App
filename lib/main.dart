@@ -8,7 +8,7 @@ import 'package:rental_app/providers/myorder_provider.dart';
 import 'package:rental_app/screen/login_page.dart';
 import 'package:rental_app/screen/pages/add_item_page.dart';
 import 'package:rental_app/screen/pages/edit_item_page.dart';
-import 'package:rental_app/screen/pages/equipment.dart';
+import 'package:rental_app/screen/old%20pages/equipment.dart';
 import 'package:rental_app/screen/pages/myitems.dart';
 import 'package:rental_app/screen/pages/myitems_details.dart';
 import '../widgets/splash_screen.dart';
@@ -78,7 +78,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/myitem',
-      builder: (context, state) => MyEquip(),
+      builder: (context, state) => MyItems(),
     ),
     GoRoute(
       path: '/edititem',

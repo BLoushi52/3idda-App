@@ -24,13 +24,13 @@ class _MyOrderViewState extends State<MyOrderView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.push('/additem');
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.yellow[700],
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     context.push('');
+      //   },
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.yellow[700],
+      // ),
       backgroundColor: myDefaultBackground,
       body: LiquidPullToRefresh(
         onRefresh: _handleRefresh,
