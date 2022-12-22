@@ -30,6 +30,8 @@ class AuthProvider extends ChangeNotifier {
       Client.dio.options.headers[HttpHeaders.authorizationHeader] =
           "Bearer $token";
       this.username = username;
+      this.firstName = firstName;
+      print('register first name: ${firstName}');
       notifyListeners();
 
       var pref = await SharedPreferences.getInstance();
@@ -57,7 +59,7 @@ class AuthProvider extends ChangeNotifier {
     var tokenMap = JwtDecoder.decode(token);
     username = tokenMap['username'];
     firstName = tokenMap['first_name'];
-    print('first name: ${firstName}');
+    print('has token first name: ${firstName}');
     notifyListeners();
     return true;
   }
@@ -74,8 +76,12 @@ class AuthProvider extends ChangeNotifier {
       Client.dio.options.headers["Authorization"] = "Bearer $token";
       var ref = await SharedPreferences.getInstance();
       ref.setString("token", token);
+      var tokenMap = JwtDecoder.decode(token);
+      username = tokenMap['username'];
+      firstName = tokenMap['first_name'];
       this.username = username;
       this.firstName = firstName;
+      print('log in first name: ${firstName}');
       notifyListeners();
       return true;
     } on DioError catch (error) {
@@ -92,6 +98,7 @@ class AuthProvider extends ChangeNotifier {
     this.hasToken(); // for testing
     // token = "";
     this.username = null;
+    this.firstName = null;
     notifyListeners();
   }
 }
