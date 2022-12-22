@@ -65,7 +65,7 @@ class MyItemProvider extends ChangeNotifier {
     required int id,
     required String title,
     required int category,
-    required File image,
+    required File? image,
     required String price,
     required String description,
   }) async {
@@ -73,7 +73,7 @@ class MyItemProvider extends ChangeNotifier {
         data: FormData.fromMap({
           "title": title,
           "category": category,
-          "image": await MultipartFile.fromFile(image.path),
+          if (image != null) "image": await MultipartFile.fromFile(image!.path),
           "price": price,
           "description": description,
         }));
