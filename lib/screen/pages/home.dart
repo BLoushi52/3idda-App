@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
+import 'package:rental_app/providers/category_provider.dart';
 
 import '../../constraints.dart';
 import '../../providers/item_provider.dart';
@@ -15,7 +16,9 @@ class UserHome extends StatefulWidget {
 
 class _UserHomeState extends State<UserHome> {
   Future<void> _handleRefresh() async {
-    return await context.read<ItemProvider>().loadItems();
+    await context.read<ItemProvider>().loadItems();
+    await context.read<CategoryProvider>().loadCategories();
+    return;
   }
 
   @override
@@ -32,6 +35,48 @@ class _UserHomeState extends State<UserHome> {
         child: Column(
           children: [
             mySearch,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12, 16, 12, 0),
+              child: Container(
+                height: 110,
+                decoration: BoxDecoration(),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount:
+                      context.watch<CategoryProvider>().categories.length,
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      Card(
+                        child: Container(
+                          height: 70,
+                          width: 130,
+                          child: Image.network(context
+                              .watch<CategoryProvider>()
+                              .categories[index]
+                              .image),
+                        ),
+                      ),
+                      Container(
+                        height: 20,
+                        width: 130,
+                        child: Text(
+                          context
+                              .watch<CategoryProvider>()
+                              .categories[index]
+                              .title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
 
             //*  category tabs
 
