@@ -4,10 +4,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/model/item_model.dart';
-import '../constraints.dart';
+
 import '../model/category_model.dart';
 import '../providers/category_provider.dart';
-import '../providers/item_provider.dart';
 
 class MyTile extends StatefulWidget {
   final Item item;

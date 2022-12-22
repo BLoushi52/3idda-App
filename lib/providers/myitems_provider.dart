@@ -69,7 +69,7 @@ class MyItemProvider extends ChangeNotifier {
     required String price,
     required String description,
   }) async {
-    var response = await Client.dio.put("/api/item/edit/${id}/",
+    var response = await Client.dio.patch("/api/item/edit/${id}/",
         data: FormData.fromMap({
           "title": title,
           "category": category,

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,7 +31,10 @@ class _AddItemPageState extends State<AddItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Create New item")),
+      appBar: AppBar(
+        title: Text("Create New item"),
+        backgroundColor: Colors.yellow[700],
+      ),
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -155,7 +158,7 @@ class _AddItemPageState extends State<AddItemPage> {
                             image: imageFile!,
                           );
 
-                      context.push('/myitem');
+                      context.pop();
                     }
                   },
                   child: Text("Add item"))
