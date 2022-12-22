@@ -130,6 +130,9 @@ class _EditItemPageState extends State<EditItemPage> {
                   height: 100,
                 ),
               ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFf14b24),
+                      fixedSize: Size.fromWidth(150)),
                   onPressed: () async {
                     var file = await ImagePicker()
                         .pickImage(source: ImageSource.gallery);
@@ -155,18 +158,12 @@ class _EditItemPageState extends State<EditItemPage> {
                   onPressed: () async {
                     // form
 
-                    if (imageFile == null) {
-                      setState(() {
-                        imageError = "Required field";
-                      });
-                    }
-
-                    if (formKey.currentState!.validate() && imageFile != null) {
+                    {
                       await context.read<MyItemProvider>().editItem(
                             id: widget.item.id,
                             title: titleController.text,
                             category: value!.id,
-                            image: imageFile!,
+                            image: imageFile,
                             description: descriptionController.text,
                             price: priceController.text.toString(),
                           );
