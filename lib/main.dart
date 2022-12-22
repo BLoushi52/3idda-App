@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/model/item_model.dart';
+import 'package:rental_app/providers/address_provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 import 'package:rental_app/providers/myorder_provider.dart';
+import 'package:rental_app/screen/add_item_page.dart';
+import 'package:rental_app/screen/edit_item_page.dart';
 import 'package:rental_app/screen/login_page.dart';
-import 'package:rental_app/screen/pages/add_item_page.dart';
-import 'package:rental_app/screen/pages/edit_item_page.dart';
-import 'package:rental_app/screen/old%20pages/equipment.dart';
+import 'package:rental_app/screen/myaddress.dart';
 import 'package:rental_app/screen/pages/myitems.dart';
-import 'package:rental_app/screen/pages/myitems_details.dart';
+import 'package:rental_app/screen/myitems_details.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
@@ -78,13 +79,17 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/myitem',
-      builder: (context, state) => MyItems(),
+      builder: (context, state) => MyItemsView(),
     ),
     GoRoute(
       path: '/edititem',
       builder: (context, state) => EditItemPage(
         item: state.extra as Item,
       ),
+    ),
+    GoRoute(
+      path: '/myaddress',
+      builder: (context, state) => MyAddressesView(),
     ),
   ],
 );
@@ -105,6 +110,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => MyItemProvider()),
         ChangeNotifierProvider(create: (context) => authProvider),
         ChangeNotifierProvider(create: (context) => MyOrderProvider()),
+        ChangeNotifierProvider(create: (context) => AddressProvider())
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

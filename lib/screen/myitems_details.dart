@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:rental_app/model/category_model.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/category_provider.dart';
-import 'package:rental_app/providers/myitems_provider.dart';
 
 class ItemDetails extends StatefulWidget {
   ItemDetails({super.key, required this.item});
@@ -32,6 +31,7 @@ class _ItemDetailsState extends State<ItemDetails> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.item.title),
+        backgroundColor: Colors.yellow[700],
       ),
       body: Column(
         children: [

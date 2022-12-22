@@ -46,7 +46,10 @@ class _EditItemPageState extends State<EditItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Edit Recipe")),
+      appBar: AppBar(
+        title: Text("Edit Recipe"),
+        backgroundColor: Colors.yellow[700],
+      ),
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -168,7 +171,7 @@ class _EditItemPageState extends State<EditItemPage> {
                             price: priceController.text.toString(),
                           );
 
-                      context.go('/myitem');
+                      context.pop();
                     }
                   },
                   child: Text("Save"))
