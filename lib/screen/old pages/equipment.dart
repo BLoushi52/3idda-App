@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 
-import '../widgets/my_items_card.dart';
+import 'my_items_card.dart';
 
 class MyItemPage extends StatefulWidget {
   const MyItemPage({Key? key}) : super(key: key);

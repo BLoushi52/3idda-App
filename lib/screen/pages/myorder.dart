@@ -3,32 +3,34 @@ import 'package:go_router/go_router.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
+import 'package:rental_app/providers/myorder_provider.dart';
 import 'package:rental_app/util/my_item.dart';
+import 'package:rental_app/util/my_order.dart';
 
 import '../../constraints.dart';
 
-class MyItems extends StatefulWidget {
-  const MyItems({super.key});
+class MyOrderView extends StatefulWidget {
+  const MyOrderView({super.key});
 
   @override
-  State<MyItems> createState() => _MyItemsState();
+  State<MyOrderView> createState() => _MyOrderViewState();
 }
 
-class _MyItemsState extends State<MyItems> {
+class _MyOrderViewState extends State<MyOrderView> {
   Future<void> _handleRefresh() async {
-    return await context.read<MyItemProvider>().loadMyItems();
+    return await context.read<MyOrderProvider>().loadMyOrders();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.push('/additem');
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.yellow[700],
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     context.push('');
+      //   },
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.yellow[700],
+      // ),
       backgroundColor: myDefaultBackground,
       body: LiquidPullToRefresh(
         onRefresh: _handleRefresh,
@@ -47,16 +49,16 @@ class _MyItemsState extends State<MyItems> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: context.watch<MyItemProvider>().items.length,
+                itemCount: context.watch<MyOrderProvider>().orders.length,
                 itemBuilder: (context, index) => InkWell(
                   onTap: () {
                     context.push(
                       '/itemdetails',
-                      extra: context.read<MyItemProvider>().items[index],
+                      extra: context.read<MyOrderProvider>().orders[index],
                     );
                   },
-                  child: MyItem(
-                    item: context.watch<MyItemProvider>().items[index],
+                  child: MyOrder(
+                    order: context.watch<MyOrderProvider>().orders[index],
                   ),
                 ),
               ),

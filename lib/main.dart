@@ -4,10 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/auth_provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
+import 'package:rental_app/providers/myorder_provider.dart';
 import 'package:rental_app/screen/login_page.dart';
 import 'package:rental_app/screen/pages/add_item_page.dart';
 import 'package:rental_app/screen/pages/edit_item_page.dart';
-import 'package:rental_app/screen/pages/equipment.dart';
+import 'package:rental_app/screen/old%20pages/equipment.dart';
 import 'package:rental_app/screen/pages/myitems.dart';
 import 'package:rental_app/screen/pages/myitems_details.dart';
 import '../widgets/splash_screen.dart';
@@ -77,7 +78,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/myitem',
-      builder: (context, state) => MyEquip(),
+      builder: (context, state) => MyItems(),
     ),
     GoRoute(
       path: '/edititem',
@@ -103,6 +104,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
         ChangeNotifierProvider(create: (context) => MyItemProvider()),
         ChangeNotifierProvider(create: (context) => authProvider),
+        ChangeNotifierProvider(create: (context) => MyOrderProvider()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
