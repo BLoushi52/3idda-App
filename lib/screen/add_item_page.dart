@@ -31,140 +31,198 @@ class _AddItemPageState extends State<AddItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        toolbarHeight: 40,
+        elevation: 0,
         title: Text("Create New item"),
         backgroundColor: Colors.yellow[700],
+        foregroundColor: Colors.black,
       ),
-      body: SafeArea(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: titleController,
-                    decoration: InputDecoration(hintText: "Item name"),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Field is required";
-                      }
+      body: ListView(
+        children: [
+          SafeArea(
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: titleController,
+                        decoration: InputDecoration(
+                          hintText: "Item Name",
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey.shade500),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Field is required";
+                          }
 
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton<Category>(
-                    icon: Icon(
-                      Icons.arrow_drop_down_circle_outlined,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                          return null;
+                        },
+                      ),
                     ),
-                    isExpanded: true,
-                    hint: Text("Choose a category"),
-                    value: value,
-                    items: context
-                        .watch<CategoryProvider>()
-                        .categories
-                        .map(buildMenuItem)
-                        .toList(),
-                    onChanged: (value) => setState(
-                          () {
-                            this.value = value;
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: DropdownButton<Category>(
+                        icon: Icon(
+                          Icons.arrow_drop_down_circle_outlined,
+                          color: Colors.grey[600],
+                          size: 30,
+                        ),
+                        isExpanded: true,
+                        hint: Text("Category"),
+                        value: value,
+                        items: context
+                            .watch<CategoryProvider>()
+                            .categories
+                            .map(buildMenuItem)
+                            .toList(),
+                        onChanged: (value) => setState(
+                              () {
+                                this.value = value;
+                              },
+                            )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: descriptionController,
+                      decoration: InputDecoration(
+                        hintText: "Description",
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade500),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Field is required";
+                        }
+
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: priceController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: "Price",
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade500),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Field is required";
+                        }
+
+                        return null;
+                      },
+                    ),
+                  ),
+                  if (imageFile != null)
+                    Image.file(
+                      imageFile!,
+                      width: 100,
+                      height: 100,
+                    )
+                  else
+                    Container(
+                      width: 100,
+                      height: 20,
+                    ),
+                  Column(
+                    children: [
+                      Icon(
+                        Icons.image_outlined,
+                        size: 55,
+                        color: Colors.grey[500],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.yellow[700],
+                            foregroundColor: Colors.black,
+                          ),
+                          onPressed: () async {
+                            var file = await ImagePicker()
+                                .pickImage(source: ImageSource.gallery);
+
+                            if (file == null) {
+                              print("User didn't select a file");
+                              return;
+                            }
+
+                            setState(() {
+                              imageFile = File(file.path);
+                              imageError = null;
+                            });
                           },
-                        )),
+                          child: Text(
+                            "Choose an Image",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          )),
+                    ],
+                  ),
+                  if (imageError != null)
+                    Text(
+                      imageError!,
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  // Spacer(),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.yellow[700],
+                        foregroundColor: Colors.black,
+                        padding: EdgeInsets.symmetric(horizontal: 80),
+                      ),
+                      onPressed: () async {
+                        // form
+
+                        if (imageFile == null) {
+                          setState(() {
+                            imageError = "Required field";
+                          });
+                        }
+
+                        if (formKey.currentState!.validate() &&
+                            imageFile != null) {
+                          await context.read<MyItemProvider>().addItem(
+                                title: titleController.text,
+                                description: descriptionController.text,
+                                price: priceController.text,
+                                category: value!.id,
+                                image: imageFile!,
+                              );
+
+                          context.pop();
+                        }
+                      },
+                      child: Text(
+                        "Add item",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ))
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: descriptionController,
-                  decoration: InputDecoration(hintText: "description"),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Field is required";
-                    }
-
-                    return null;
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: priceController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(hintText: "price"),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Field is required";
-                    }
-
-                    return null;
-                  },
-                ),
-              ),
-              if (imageFile != null)
-                Image.file(
-                  imageFile!,
-                  width: 100,
-                  height: 100,
-                )
-              else
-                Container(
-                  width: 100,
-                  height: 100,
-                ),
-              ElevatedButton(
-                  onPressed: () async {
-                    var file = await ImagePicker()
-                        .pickImage(source: ImageSource.gallery);
-
-                    if (file == null) {
-                      print("Use didnt select a file");
-                      return;
-                    }
-
-                    setState(() {
-                      imageFile = File(file.path);
-                      imageError = null;
-                    });
-                  },
-                  child: Text("Add Image")),
-              if (imageError != null)
-                Text(
-                  imageError!,
-                  style: TextStyle(color: Colors.red),
-                ),
-              Spacer(),
-              ElevatedButton(
-                  onPressed: () async {
-                    // form
-
-                    if (imageFile == null) {
-                      setState(() {
-                        imageError = "Required field";
-                      });
-                    }
-
-                    if (formKey.currentState!.validate() && imageFile != null) {
-                      await context.read<MyItemProvider>().addItem(
-                            title: titleController.text,
-                            description: descriptionController.text,
-                            price: priceController.text,
-                            category: value!.id,
-                            image: imageFile!,
-                          );
-
-                      context.pop();
-                    }
-                  },
-                  child: Text("Add item"))
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

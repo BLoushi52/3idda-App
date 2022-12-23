@@ -24,10 +24,17 @@ class _MyAddressesViewState extends State<MyAddressesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Addresses"),
+        toolbarHeight: 40,
+        elevation: 0,
+        title: Text(
+          "My Addresses",
+          style: TextStyle(color: Colors.black),
+        ),
         backgroundColor: Colors.yellow[700],
+        foregroundColor: Colors.black,
       ),
       floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.black,
         onPressed: () {
           context.push('/addaddress');
         },
@@ -44,7 +51,7 @@ class _MyAddressesViewState extends State<MyAddressesView> {
         showChildOpacityTransition: false,
         child: Column(
           children: [
-            mySearch,
+            // mySearch,
 
             //*  category tabs
 
