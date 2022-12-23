@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rental_app/model/address_model.dart';
 import '../client.dart';
@@ -32,5 +33,24 @@ class AddressProvider extends ChangeNotifier {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> addAddress({
+    required String dstrict,
+    required String area,
+    required String block,
+    required String street,
+    required String house,
+  }) async {
+    var response = await Client.dio.post("/api/address/create/",
+        data: FormData.fromMap({
+          "dstrict": dstrict,
+          "area": area,
+          "block": block,
+          "street": street,
+          "house": house,
+        }));
+
+    loadAddresses();
   }
 }

@@ -6,6 +6,7 @@ import 'package:rental_app/providers/address_provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 import 'package:rental_app/providers/myorder_provider.dart';
+import 'package:rental_app/screen/add_address_page.dart';
 import 'package:rental_app/screen/add_item_page.dart';
 import 'package:rental_app/screen/edit_item_page.dart';
 import 'package:rental_app/screen/login_page.dart';
@@ -90,6 +91,10 @@ final router = GoRouter(
     GoRoute(
       path: '/myaddress',
       builder: (context, state) => MyAddressesView(),
+    ),
+    GoRoute(
+      path: '/addaddress',
+      builder: (context, state) => AddAddressPage(),
     ),
   ],
 );

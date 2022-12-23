@@ -59,7 +59,7 @@ class _MyAddressState extends State<MyAddress> {
               onPressed: () {
                 context.push('', extra: widget.address);
               },
-              child: Row(
+              child: Wrap(
                 children: [
                   SizedBox(width: 15),
                   Expanded(
@@ -67,7 +67,7 @@ class _MyAddressState extends State<MyAddress> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
+                        Wrap(
                           children: [
                             Text(
                               "dstrict: ${widget.address.dstrict} - area: ${widget.address.area} block: ${widget.address.block} - street: ${widget.address.street} - house: ${widget.address.house}",

@@ -322,6 +322,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             hintText: 'Email',
                             hintStyle: TextStyle(color: Colors.grey[500])),
                         controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
                         obscureText: false,
                         validator: (value) {
                           RegExp regex = RegExp(

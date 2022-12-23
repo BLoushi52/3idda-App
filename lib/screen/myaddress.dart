@@ -29,7 +29,7 @@ class _MyAddressesViewState extends State<MyAddressesView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.push('');
+          context.push('/addaddress');
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.yellow[700],
