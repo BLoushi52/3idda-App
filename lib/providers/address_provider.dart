@@ -36,7 +36,7 @@ class AddressProvider extends ChangeNotifier {
   }
 
   Future<void> addAddress({
-    required String dstrict,
+    required String district,
     required String area,
     required String block,
     required String street,
@@ -44,12 +44,38 @@ class AddressProvider extends ChangeNotifier {
   }) async {
     var response = await Client.dio.post("/api/address/create/",
         data: FormData.fromMap({
-          "dstrict": dstrict,
+          "district": district,
           "area": area,
           "block": block,
           "street": street,
           "house": house,
         }));
+
+    loadAddresses();
+  }
+
+  Future<void> editAddress({
+    required int id,
+    required String district,
+    required String area,
+    required String block,
+    required String street,
+    required String house,
+  }) async {
+    var response = await Client.dio.patch("/api/address/edit/${id}/",
+        data: FormData.fromMap({
+          "district": district,
+          "area": area,
+          "block": block,
+          "street": street,
+          "house": house,
+        }));
+
+    loadAddresses();
+  }
+
+  void deleteAddress(int id) async {
+    await Client.dio.delete("/api/address/delete/$id/");
 
     loadAddresses();
   }

@@ -33,7 +33,7 @@ class _MyAddressState extends State<MyAddress> {
                 SlidableAction(
                   label: 'Edit',
                   onPressed: (context) {
-                    context.push('', extra: widget.address);
+                    context.push('/editaddress', extra: widget.address);
                   },
                   backgroundColor: Colors.blue,
                   icon: Icons.edit,
@@ -46,10 +46,11 @@ class _MyAddressState extends State<MyAddress> {
               children: [
                 SlidableAction(
                   label: 'Delete',
-                  onPressed: ((context) async {
-                    await context.read<AddressProvider>();
-                    // .deleteRecipe; //*    <---------  DELETE RECIPE
-                  }),
+                  onPressed: (context) {
+                    context
+                        .read<AddressProvider>()
+                        .deleteAddress(widget.address.id);
+                  },
                   backgroundColor: Colors.red,
                   icon: Icons.delete,
                 ),
@@ -70,7 +71,7 @@ class _MyAddressState extends State<MyAddress> {
                         Wrap(
                           children: [
                             Text(
-                              "dstrict: ${widget.address.dstrict} - area: ${widget.address.area} block: ${widget.address.block} - street: ${widget.address.street} - house: ${widget.address.house}",
+                              "district: ${widget.address.district} - area: ${widget.address.area} block: ${widget.address.block} - street: ${widget.address.street} - house: ${widget.address.house}",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 13,
