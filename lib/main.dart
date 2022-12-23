@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:rental_app/model/address_model.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/address_provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
@@ -8,6 +9,7 @@ import 'package:rental_app/providers/myitems_provider.dart';
 import 'package:rental_app/providers/myorder_provider.dart';
 import 'package:rental_app/screen/add_address_page.dart';
 import 'package:rental_app/screen/add_item_page.dart';
+import 'package:rental_app/screen/edit_address_page.dart';
 import 'package:rental_app/screen/edit_item_page.dart';
 import 'package:rental_app/screen/login_page.dart';
 import 'package:rental_app/screen/myaddress.dart';
@@ -95,6 +97,12 @@ final router = GoRouter(
     GoRoute(
       path: '/addaddress',
       builder: (context, state) => AddAddressPage(),
+    ),
+    GoRoute(
+      path: '/editaddress',
+      builder: (context, state) => EditAddressPage(
+        address: state.extra as Address,
+      ),
     ),
   ],
 );
