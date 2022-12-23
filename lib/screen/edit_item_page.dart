@@ -107,6 +107,7 @@ class _EditItemPageState extends State<EditItemPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: priceController,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(hintText: "Price"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
