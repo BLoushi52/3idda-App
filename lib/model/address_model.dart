@@ -2,14 +2,14 @@ import 'dart:convert';
 
 class Address {
   int id;
-  String dstrict;
+  String district;
   String area;
   int block;
   String street;
   int house;
   Address({
     required this.id,
-    required this.dstrict,
+    required this.district,
     required this.area,
     required this.block,
     required this.street,
@@ -19,7 +19,7 @@ class Address {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'dstrict': dstrict,
+      'district': district,
       'area': area,
       'block': block,
       'street': street,
@@ -30,7 +30,7 @@ class Address {
   factory Address.fromMap(Map<String, dynamic> map) {
     return Address(
       id: map['id']?.toInt() ?? 0,
-      dstrict: map['dstrict'] ?? '',
+      district: map['district'] ?? '',
       area: map['area'] ?? '',
       block: map['block']?.toInt() ?? 0,
       street: map['street'] ?? '',

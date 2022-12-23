@@ -59,8 +59,6 @@ class MyItemProvider extends ChangeNotifier {
     loadMyItems();
   }
 
-  addCategory({required String title, required File image}) {}
-
   Future<void> editItem({
     required int id,
     required String title,
