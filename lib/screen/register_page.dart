@@ -38,15 +38,17 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        backgroundColor: Colors.yellow[700],
-        title: Text(
-          'Register',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        toolbarHeight: 40,
+        elevation: 0,
+        backgroundColor: Colors.grey[300],
+        // title: Text(
+        //   'Register',
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontSize: 25,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
         leading: GestureDetector(
           onTap: () {
             context.pop();
@@ -66,7 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 20),
+                    // const SizedBox(height: 5),
 
                     // logo
                     // const Icon(
@@ -78,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 200,
                     ),
 
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
 
                     // welcome back, you've been missed!
                     Text(
@@ -97,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
 
-                    const SizedBox(height: 35),
+                    const SizedBox(height: 30),
 
                     //* HEADER 1 - START
 
@@ -392,7 +394,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     //     },
                     //   ),
                     // ),
-                    const SizedBox(height: 10),
+                    // const SizedBox(height: 10),
 
                     // forgot password?
                     // Padding(

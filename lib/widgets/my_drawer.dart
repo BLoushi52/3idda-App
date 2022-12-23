@@ -41,7 +41,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       ),
                     )
                   : Text(
-                      'Log in for more more access!',
+                      'Log in for more access!',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -133,18 +133,21 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           onTap: () {},
         ),
-        SizedBox(height: 375),
+        Spacer(),
         if (context.watch<AuthProvider>().username != null)
           GestureDetector(
-            child: ListTile(
-              leading: Icon(
-                Icons.logout,
-                color: Colors.black,
-              ),
-              title: Text(
-                'L O G O U T',
-                style: TextStyle(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 75),
+              child: ListTile(
+                leading: Icon(
+                  Icons.logout,
                   color: Colors.black,
+                ),
+                title: Text(
+                  'L O G O U T',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

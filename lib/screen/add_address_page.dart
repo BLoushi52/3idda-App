@@ -21,9 +21,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        toolbarHeight: 40,
+        elevation: 0,
         title: Text("Create New address"),
         backgroundColor: Colors.yellow[700],
+        foregroundColor: Colors.black,
       ),
       body: SafeArea(
         child: Form(
@@ -34,7 +38,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 padding: EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: districtController,
-                  decoration: InputDecoration(hintText: "district"),
+
+                  decoration: InputDecoration(hintText: "District"),
+
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Field is required";
@@ -47,7 +53,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 padding: EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: areaController,
-                  decoration: InputDecoration(hintText: "area"),
+                  decoration: InputDecoration(hintText: "Area"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Field is required";
@@ -62,7 +68,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 child: TextFormField(
                   keyboardType: TextInputType.number,
                   controller: blockController,
-                  decoration: InputDecoration(hintText: "block"),
+                  decoration: InputDecoration(hintText: "Block"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Field is required";
@@ -77,7 +83,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 child: TextFormField(
                   keyboardType: TextInputType.number,
                   controller: streetController,
-                  decoration: InputDecoration(hintText: "street"),
+                  decoration: InputDecoration(hintText: "Street"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Field is required";
@@ -92,7 +98,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 child: TextFormField(
                   keyboardType: TextInputType.number,
                   controller: houseController,
-                  decoration: InputDecoration(hintText: "house number"),
+                  decoration: InputDecoration(hintText: "House Number"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Field is required";
@@ -102,10 +108,17 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   },
                 ),
               ),
-              Spacer(),
+              SizedBox(
+                height: 45,
+              ),
               ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow[700],
+                    foregroundColor: Colors.black,
+                  ),
                   onPressed: () async {
                     await context.read<AddressProvider>().addAddress(
+
                           district: districtController.text,
                           area: areaController.text,
                           block: blockController.text,
@@ -115,7 +128,12 @@ class _AddAddressPageState extends State<AddAddressPage> {
 
                     context.pop();
                   },
-                  child: Text("Add New Address"))
+                  child: Text(
+                    "Add New Address",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold
+                        // fontWeight: FontWeight.bold,
+                        ),
+                  ))
             ],
           ),
         ),

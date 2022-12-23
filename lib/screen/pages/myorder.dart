@@ -40,8 +40,23 @@ class _MyOrderViewState extends State<MyOrderView> {
         animSpeedFactor: 2,
         showChildOpacityTransition: false,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            mySearch,
+            // mySearch,
+
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                'My Rentals',
+                style: TextStyle(
+                  color: Colors.grey[700],
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
 
             //*  category tabs
 
