@@ -67,8 +67,8 @@ class _MyItemState extends State<MyItem> {
               child: Row(
                 children: [
                   Container(
-                    height: 95, //*  <------------ Can reduce to 90/90
-                    width: 95, //*   <------------ if 'Category' is removed.
+                    height: 110, //*  <------------ Can reduce to 90/90
+                    width: 110, //*   <------------ if 'Category' is removed.
                     decoration: BoxDecoration(
                       color: Colors.blueGrey,
                       borderRadius: BorderRadius.circular(10),
@@ -88,7 +88,7 @@ class _MyItemState extends State<MyItem> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 2),
+                              padding: const EdgeInsets.only(bottom: 0),
                               child: Text(
                                 context
                                     .watch<CategoryProvider>()
@@ -131,7 +131,7 @@ class _MyItemState extends State<MyItem> {
                         Text(
                           widget.item.title,
                           style: TextStyle(
-                            fontSize: 17,
+                            fontSize: 15,
                             color: Colors.black87,
                             fontWeight: FontWeight.bold,
                           ),
@@ -155,7 +155,7 @@ class _MyItemState extends State<MyItem> {
                               "KD ${widget.item.price}",
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 14,
+                                fontSize: 13,
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.bold,
                               ),

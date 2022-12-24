@@ -47,13 +47,19 @@ class _UserHomeState extends State<UserHome> {
                   itemBuilder: (context, index) => Column(
                     children: [
                       Card(
-                        child: Container(
-                          height: 70,
-                          width: 130,
-                          child: Image.network(context
-                              .watch<CategoryProvider>()
-                              .categories[index]
-                              .image),
+                        // color: Colors.grey[300],
+                        elevation: 0,
+                        child: ClipRRect(
+                          // borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            height: 70,
+                            // width: 130,
+                            color: Colors.grey[300],
+                            child: Image.network(context
+                                .watch<CategoryProvider>()
+                                .categories[index]
+                                .image),
+                          ),
                         ),
                       ),
                       Container(

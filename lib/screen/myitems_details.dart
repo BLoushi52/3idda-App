@@ -33,7 +33,7 @@ class _ItemDetailsState extends State<ItemDetails> {
       appBar: AppBar(
         toolbarHeight: 40,
         elevation: 0,
-        title: Text(widget.item.title),
+        // title: Text(widget.item.title),
         backgroundColor: Colors.yellow[700],
         foregroundColor: Colors.black,
       ),
@@ -44,8 +44,8 @@ class _ItemDetailsState extends State<ItemDetails> {
             children: [
               Image.network(
                 widget.item.image,
-                height: 400,
-                fit: BoxFit.fill,
+                height: 300,
+                fit: BoxFit.contain,
                 width: double.infinity,
               ),
               Padding(
@@ -53,10 +53,12 @@ class _ItemDetailsState extends State<ItemDetails> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.item.title,
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    Expanded(
+                      child: Text(
+                        widget.item.title,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),
@@ -73,14 +75,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                         'Category: ',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 15, fontWeight: FontWeight.bold),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         '${category!.title.toString()}',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.normal),
+                            fontSize: 14, fontWeight: FontWeight.normal),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
@@ -96,52 +98,188 @@ class _ItemDetailsState extends State<ItemDetails> {
                       'Description: ',
                       textAlign: TextAlign.left,
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.item.description,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.normal),
-                      // overflow: TextOverflow.ellipsis,
+                    Expanded(
+                      child: Text(
+                        widget.item.description,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.normal),
+                        // overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     crossAxisAlignment: CrossAxisAlignment.end,
+              //     children: [
+              //       Text(
+              //         'Daily Price: ',
+              //         textAlign: TextAlign.left,
+              //         style:
+              //             TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              //         overflow: TextOverflow.ellipsis,
+              //       ),
+              //       Text(
+              //         '${widget.item.price.toString()}00 KD',
+              //         textAlign: TextAlign.left,
+              //         style: TextStyle(
+              //             fontSize: 14, fontWeight: FontWeight.normal),
+              //         overflow: TextOverflow.ellipsis,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              SizedBox(
+                height: 5,
+              ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'Daily Price: ',
-                      textAlign: TextAlign.left,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text(
-                      '${widget.item.price.toString()} KD',
-                      textAlign: TextAlign.left,
+                      'Rental Plans:',
                       style: TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.normal),
-                      overflow: TextOverflow.ellipsis,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: 105,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(
+                              '1 Day',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 20),
+                            child: Text(
+                              'KD ${widget.item.price.toString()}00',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: 105,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(
+                              '1 Week',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 20),
+                            child: Text(
+                              'KD ' + (widget.item.price * 4).toString() + '00',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: 105,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(
+                              '1 Month',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 20),
+                            child: Text(
+                              'KD ' +
+                                  (widget.item.price * 16).toString() +
+                                  '00',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
+          SizedBox(height: 20),
         ],
       ),
     );
