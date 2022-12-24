@@ -5,6 +5,7 @@ import 'package:rental_app/model/address_model.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/address_provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
+import 'package:rental_app/providers/favorite_provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 import 'package:rental_app/providers/myorder_provider.dart';
 import 'package:rental_app/screen/add_address_page.dart';
@@ -13,6 +14,7 @@ import 'package:rental_app/screen/edit_address_page.dart';
 import 'package:rental_app/screen/edit_item_page.dart';
 import 'package:rental_app/screen/login_page.dart';
 import 'package:rental_app/screen/myaddress.dart';
+import 'package:rental_app/screen/pages/myfavorite.dart';
 import 'package:rental_app/screen/pages/myitems.dart';
 import 'package:rental_app/screen/myitems_details.dart';
 import '../widgets/splash_screen.dart';
@@ -104,6 +106,10 @@ final router = GoRouter(
         address: state.extra as Address,
       ),
     ),
+    GoRoute(
+      path: '/myfavorite',
+      builder: (context, state) => MyFavoriteView(),
+    ),
   ],
 );
 
@@ -123,7 +129,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => MyItemProvider()),
         ChangeNotifierProvider(create: (context) => authProvider),
         ChangeNotifierProvider(create: (context) => MyOrderProvider()),
-        ChangeNotifierProvider(create: (context) => AddressProvider())
+        ChangeNotifierProvider(create: (context) => AddressProvider()),
+        ChangeNotifierProvider(create: (context) => FavoriteProvider()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
