@@ -136,23 +136,27 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomNavigationBar: Container(
             color: Colors.grey[300],
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              padding: const EdgeInsets.only(
+                  top: 8, bottom: 20, left: 15, right: 15),
+              // const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: GNav(
                 backgroundColor: Colors.grey.shade300,
                 color: Colors.grey.shade600,
                 activeColor: Colors.black,
                 tabBackgroundColor: Colors.yellow.shade700,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 gap: 8,
                 onTabChange: _navigateBottomBar,
                 selectedIndex: _selectedIndex,
                 tabs: const [
                   GButton(
                     icon: Icons.home_outlined,
+                    iconSize: 28,
                     text: 'Home',
                   ),
                   GButton(
                     icon: Icons.list_alt,
+                    iconSize: 25,
                     text: 'My Rentals',
                   ),
                   GButton(
@@ -161,6 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GButton(
                     icon: Icons.person_outlined,
+                    iconSize: 26,
                     text: 'Account',
                   ),
                 ],
