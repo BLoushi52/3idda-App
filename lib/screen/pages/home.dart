@@ -90,6 +90,7 @@ class _UserHomeState extends State<UserHome> {
 
             Expanded(
               child: ListView.builder(
+                padding: EdgeInsets.zero,
                 itemCount: context.watch<ItemProvider>().items.length,
                 itemBuilder: (context, index) {
                   return MyTile(
