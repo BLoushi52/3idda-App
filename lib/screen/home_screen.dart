@@ -9,6 +9,8 @@ import 'package:rental_app/screen/pages/myorder.dart';
 import 'package:rental_app/widgets/my_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import 'pages/myfavorite.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

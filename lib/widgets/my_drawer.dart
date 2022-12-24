@@ -64,7 +64,9 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              context.push('/myfavorite');
+            },
           ),
         if (context.watch<AuthProvider>().username != null)
           GestureDetector(
