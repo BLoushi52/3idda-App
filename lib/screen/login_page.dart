@@ -92,12 +92,24 @@ class LoginPage extends StatelessWidget {
                     print(success);
                     if (success) {
                       context.go('/home');
-                      print("login successful"); // for testing
+                      print("Login Successful"); // for testing
                     } else
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           backgroundColor: Colors.red,
-                          content: Text("login unsuccessful"),
+                          content: Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Icon(
+                                  Icons.error_outline_rounded,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text("Login Unsuccessful"),
+                            ],
+                          ),
                         ),
                       );
                   },
