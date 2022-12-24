@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/model/category_model.dart';
 import 'package:rental_app/model/item_model.dart';
@@ -29,17 +31,36 @@ class _ItemDetailsState extends State<ItemDetails> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         toolbarHeight: 40,
         elevation: 0,
-        // title: Text(widget.item.title),
-        backgroundColor: Colors.yellow[700],
+        leadingWidth: 68,
+        backgroundColor: Colors.grey[300],
         foregroundColor: Colors.black,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 25),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.yellow[700]),
+            child: CupertinoButton(
+              padding: EdgeInsets.only(right: 0),
+              child: Icon(
+                Icons.chevron_left,
+                color: Colors.black,
+                size: 28,
+              ),
+              onPressed: () {
+                context.go('/home');
+              },
+            ),
+          ),
+        ),
       ),
       body: ListView(
         children: [
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Column(
             children: [
               Image.network(
@@ -279,7 +300,24 @@ class _ItemDetailsState extends State<ItemDetails> {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.yellow[700],
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                ),
+                onPressed: () {},
+                child: Text(
+                  "Rent Item",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+          )
         ],
       ),
     );

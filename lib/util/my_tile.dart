@@ -32,7 +32,7 @@ class _MyTileState extends State<MyTile> {
           Slidable(
             child: CupertinoButton(
               onPressed: () {
-                context.push('/itemdetails', extra: widget.item);
+                context.go('/itemdetails', extra: widget.item);
               },
               child: Row(
                 children: [

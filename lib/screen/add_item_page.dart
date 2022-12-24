@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -35,9 +36,29 @@ class _AddItemPageState extends State<AddItemPage> {
       appBar: AppBar(
         toolbarHeight: 40,
         elevation: 0,
-        title: Text("Create New item"),
-        backgroundColor: Colors.yellow[700],
+        leadingWidth: 68,
+        title: Text("Add Item"),
+        backgroundColor: Colors.grey[300],
         foregroundColor: Colors.black,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 25),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.yellow[700]),
+            child: CupertinoButton(
+              padding: EdgeInsets.only(right: 0),
+              child: Icon(
+                Icons.chevron_left,
+                color: Colors.black,
+                size: 28,
+              ),
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ),
+        ),
       ),
       body: ListView(
         children: [
@@ -212,9 +233,9 @@ class _AddItemPageState extends State<AddItemPage> {
                         }
                       },
                       child: Text(
-                        "Add item",
+                        "Add Item",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ))

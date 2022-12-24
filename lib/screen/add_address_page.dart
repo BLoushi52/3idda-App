@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +26,29 @@ class _AddAddressPageState extends State<AddAddressPage> {
       appBar: AppBar(
         toolbarHeight: 40,
         elevation: 0,
+        leadingWidth: 68,
         title: Text("Create New address"),
-        backgroundColor: Colors.yellow[700],
+        backgroundColor: Colors.grey[300],
         foregroundColor: Colors.black,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 25),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.yellow[700]),
+            child: CupertinoButton(
+              padding: EdgeInsets.only(right: 0),
+              child: Icon(
+                Icons.chevron_left,
+                color: Colors.black,
+                size: 28,
+              ),
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Form(
@@ -38,9 +59,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 padding: EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: districtController,
-
                   decoration: InputDecoration(hintText: "District"),
-
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Field is required";
@@ -118,7 +137,6 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   ),
                   onPressed: () async {
                     await context.read<AddressProvider>().addAddress(
-
                           district: districtController.text,
                           area: areaController.text,
                           block: blockController.text,
@@ -129,10 +147,11 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     context.pop();
                   },
                   child: Text(
-                    "Add New Address",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold
-                        // fontWeight: FontWeight.bold,
-                        ),
+                    "Add Address",
+                    style: TextStyle(
+                      fontSize: 17,
+                      // fontWeight: FontWeight.bold,
+                    ),
                   ))
             ],
           ),
