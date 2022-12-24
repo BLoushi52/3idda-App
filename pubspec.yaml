@@ -51,6 +51,7 @@ dependencies:
   get: ^4.6.5
   google_nav_bar: ^5.0.6
   image_picker: ^0.8.6
+  favorite_button: ^0.0.4
 
 dev_dependencies:
   flutter_test:

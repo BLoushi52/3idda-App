@@ -1,3 +1,4 @@
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -35,11 +36,11 @@ class _ItemDetailsState extends State<ItemDetails> {
       appBar: AppBar(
         toolbarHeight: 40,
         elevation: 0,
-        leadingWidth: 68,
+        leadingWidth: 69,
         backgroundColor: Colors.grey[300],
         foregroundColor: Colors.black,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 25),
+          padding: EdgeInsets.only(left: 25),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -57,15 +58,33 @@ class _ItemDetailsState extends State<ItemDetails> {
             ),
           ),
         ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 25),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.yellow[700]),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: FavoriteButton(
+                  isFavorite: false, // here we get it from api (As boolean)
+                  valueChanged: () {},
+                  iconSize: 30,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 12),
+        padding: EdgeInsets.only(top: 12),
         child: ListView(
           children: [
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 0.0),
+                  padding: EdgeInsets.only(bottom: 0.0),
                   child: Image.network(
                     widget.item.image,
                     height: 300,
@@ -83,7 +102,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 17.0, left: 8),
+                        padding: EdgeInsets.only(top: 17.0, left: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -98,9 +117,9 @@ class _ItemDetailsState extends State<ItemDetails> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -125,7 +144,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: EdgeInsets.only(left: 8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -140,7 +159,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                             left: 8, right: 8, bottom: 8, top: 4),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -159,7 +178,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         ),
                       ),
                       // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
+                      //   padding: EdgeInsets.all(8.0),
                       //   child: Row(
                       //     mainAxisAlignment: MainAxisAlignment.start,
                       //     crossAxisAlignment: CrossAxisAlignment.end,
@@ -185,7 +204,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         height: 5,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -213,8 +232,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
+                                    padding: EdgeInsets.symmetric(vertical: 20),
                                     child: Text(
                                       '1 Day',
                                       style: TextStyle(
@@ -225,7 +243,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Padding(
-                                    padding: const EdgeInsets.only(
+                                    padding: EdgeInsets.only(
                                         left: 10, right: 10, bottom: 20),
                                     child: Text(
                                       'KD ${widget.item.price.toString()}00',
@@ -250,8 +268,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
+                                    padding: EdgeInsets.symmetric(vertical: 20),
                                     child: Text(
                                       '1 Week',
                                       style: TextStyle(
@@ -262,7 +279,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Padding(
-                                    padding: const EdgeInsets.only(
+                                    padding: EdgeInsets.only(
                                         left: 10, right: 10, bottom: 20),
                                     child: Text(
                                       'KD ' +
@@ -288,8 +305,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
+                                    padding: EdgeInsets.symmetric(vertical: 20),
                                     child: Text(
                                       '1 Month',
                                       style: TextStyle(
@@ -300,7 +316,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Padding(
-                                    padding: const EdgeInsets.only(
+                                    padding: EdgeInsets.only(
                                         left: 10, right: 10, bottom: 20),
                                     child: Text(
                                       'KD ' +
@@ -325,7 +341,7 @@ class _ItemDetailsState extends State<ItemDetails> {
             ),
             SizedBox(height: 40),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
+              padding: EdgeInsets.symmetric(horizontal: 50),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.yellow[700],
