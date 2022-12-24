@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -140,14 +141,16 @@ class LoginPage extends StatelessWidget {
               //* google + apple sign in buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   // google button
-                  SquareTile(imagePath: 'assets/google.png'),
-
-                  SizedBox(width: 25),
+                  CupertinoButton(
+                      onPressed: () {},
+                      child: SquareTile(imagePath: 'assets/google.png')),
 
                   // apple button
-                  SquareTile(imagePath: 'assets/apple.png')
+                  CupertinoButton(
+                      onPressed: () {},
+                      child: SquareTile(imagePath: 'assets/apple.png'))
                 ],
               ),
 
@@ -183,16 +186,15 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Or just...........',
+                        'Or just ',
                         style: TextStyle(color: Colors.grey[700]),
                       ),
-                      const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () {
                           context.replace('/home');
                         },
                         child: const Text(
-                          'start searching',
+                          'Start Exploring',
                           style: TextStyle(
                             color: Colors.blue,
                             fontWeight: FontWeight.bold,
