@@ -36,17 +36,6 @@ class LoginPage extends StatelessWidget {
                 width: 250,
               ),
 
-              const SizedBox(height: 10),
-
-              // welcome back, you've been missed!
-              Text(
-                'Welcome back you\'ve been missed!',
-                style: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 16,
-                ),
-              ),
-
               const SizedBox(height: 45),
 
               // username textfield
@@ -65,17 +54,21 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
               ),
 
-              const SizedBox(height: 10),
-
               // forgot password?
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
+                    CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {},
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -175,25 +168,23 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Not a member?',
+                        'Not a member? ',
                         style: TextStyle(color: Colors.grey[700]),
                       ),
-                      const SizedBox(width: 4),
-                      GestureDetector(
-                        onTap: () {
+                      CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
                           context.push('/register');
                         },
                         child: const Text(
                           'Register now',
                           style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -201,15 +192,15 @@ class LoginPage extends StatelessWidget {
                         'Or just ',
                         style: TextStyle(color: Colors.grey[700]),
                       ),
-                      GestureDetector(
-                        onTap: () {
+                      CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
                           context.replace('/home');
                         },
                         child: const Text(
                           'Start Exploring',
                           style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
                           ),
                         ),
                       ),
