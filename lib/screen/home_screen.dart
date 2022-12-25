@@ -124,25 +124,27 @@ class _HomeScreenState extends State<HomeScreen> {
               foregroundColor: Colors.black,
               elevation: 0,
               leading: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Container(
-                  width: 45,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700]),
-                  child: CupertinoButton(
-                    padding: EdgeInsets.only(right: 0),
-                    child: Icon(
-                      Icons.notifications_outlined,
-                      color: Colors.black,
-                      size: 25,
-                    ), //* Icon(Icons.notifications_active_outlined)
-                    onPressed: () {
-                      // Navigator.push(context, route);
-                    },
-                  ),
-                ),
-              )),
+                  padding: const EdgeInsets.only(left: 25),
+                  child: Container(
+                      width: 45,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.yellow[700]),
+                      child: CupertinoButton(
+                          padding: EdgeInsets.only(right: 0),
+                          child: Icon(
+                            Icons.menu,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            if (scaffoldKey.currentState!.isDrawerOpen) {
+                              scaffoldKey.currentState!.closeDrawer();
+                              //close drawer, if drawer is open
+                            } else {
+                              scaffoldKey.currentState!.openDrawer();
+                              //open drawer, if drawer is closed
+                            }
+                          })))),
           drawer:
               MyDrawer(), //*    <----- CHANGE DRAWER WIDGET IF GUEST/SIGNED IN
           // bottomNavigationBar: _bottomNav(sizingInformation), //* <-- OLD BOTTOM NAV
