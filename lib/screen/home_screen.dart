@@ -110,12 +110,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   Icon(Icons.pin_drop_outlined),
                   SizedBox(width: 5),
                   _position != null && placemarks != null
-                      ? AutoSizeText(
-                          '${placemarks?.first.street}',
-                          style: TextStyle(fontSize: 10),
-                          minFontSize: 12,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                      ? Container(
+                          width: 190,
+                          child: AutoSizeText(
+                            '${placemarks?.first.street}',
+                            style: TextStyle(fontSize: 10),
+                            minFontSize: 12,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         )
                       : AutoSizeText('No Location Data'),
                 ],
