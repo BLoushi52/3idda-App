@@ -78,60 +78,19 @@ class _HomeScreenState extends State<HomeScreen> {
           key: scaffoldKey,
           backgroundColor: myDefaultBackground,
           appBar: AppBar(
-            leadingWidth: 68,
-            toolbarHeight: 40,
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 25),
-                child: Container(
-                  height: 40,
-                  width: 45,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700]),
-                  // color: Colors.yellow[700],
-                  child: CupertinoButton(
-                    padding: EdgeInsets.only(right: 0),
-                    child: Icon(
-                      Icons.notifications_outlined,
-                      color: Colors.black,
-                      size: 25,
-                    ), //* Icon(Icons.notifications_active_outlined)
-                    onPressed: () {
-                      // Navigator.push(context, route);
-                    },
-                  ),
-                ),
-              )
-            ],
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.pin_drop_outlined),
-                SizedBox(width: 5),
-                _position != null && placemarks != null
-                    ? AutoSizeText(
-                        '${placemarks?.first.street}',
-                        style: TextStyle(fontSize: 10),
-                        minFontSize: 12,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    : AutoSizeText('No Location Data'),
-              ],
-            ),
-            backgroundColor: Colors.grey[300],
-            foregroundColor: Colors.black,
-            elevation: 0,
-            leading: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Container(
+              leadingWidth: 68,
+              toolbarHeight: 40,
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 25),
+                  child: Container(
+                    height: 40,
                     width: 45,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.yellow[700]),
+                    // color: Colors.yellow[700],
                     child: CupertinoButton(
-
                       padding: EdgeInsets.only(right: 0),
                       child: Icon(
                         Icons.notifications_outlined,
@@ -148,42 +107,42 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.location_on_outlined),
-                  Text(
-                    'Surra, Kuwait',
-                    style: TextStyle(
-                      fontSize: 16,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(width: 6),
+                  Icon(Icons.pin_drop_outlined),
+                  SizedBox(width: 5),
+                  _position != null && placemarks != null
+                      ? AutoSizeText(
+                          '${placemarks?.first.street}',
+                          style: TextStyle(fontSize: 10),
+                          minFontSize: 12,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        )
+                      : AutoSizeText('No Location Data'),
                 ],
               ),
               backgroundColor: Colors.grey[300],
               foregroundColor: Colors.black,
               elevation: 0,
               leading: Padding(
-                  padding: const EdgeInsets.only(left: 25),
-                  child: Container(
-                      width: 45,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.yellow[700]),
-                      child: CupertinoButton(
-                          padding: EdgeInsets.only(right: 0),
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.black,
-                          ),
-                          onPressed: () {
-                            if (scaffoldKey.currentState!.isDrawerOpen) {
-                              scaffoldKey.currentState!.closeDrawer();
-                              //close drawer, if drawer is open
-                            } else {
-                              scaffoldKey.currentState!.openDrawer();
-                              //open drawer, if drawer is closed
-                            }
-                          })))),
+                padding: const EdgeInsets.only(left: 25),
+                child: Container(
+                  width: 45,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.yellow[700]),
+                  child: CupertinoButton(
+                    padding: EdgeInsets.only(right: 0),
+                    child: Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.black,
+                      size: 25,
+                    ), //* Icon(Icons.notifications_active_outlined)
+                    onPressed: () {
+                      // Navigator.push(context, route);
+                    },
+                  ),
+                ),
+              )),
           drawer:
               MyDrawer(), //*    <----- CHANGE DRAWER WIDGET IF GUEST/SIGNED IN
           // bottomNavigationBar: _bottomNav(sizingInformation), //* <-- OLD BOTTOM NAV
