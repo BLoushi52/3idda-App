@@ -136,9 +136,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routerConfig: router,
         title: '3idda Equipment Rental App',
+        // themeMode: ThemeMode.dark,
+        // darkTheme: ThemeData.dark(),
         theme: ThemeData(
-          fontFamily: "Roboto",
-        ),
+            fontFamily: "Roboto",
+            primaryColor: Colors.red,
+            floatingActionButtonTheme: FloatingActionButtonThemeData(
+              backgroundColor: Colors.green,
+            )),
       ),
     );
   }

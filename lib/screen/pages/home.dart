@@ -25,6 +25,10 @@ class _UserHomeState extends State<UserHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myDefaultBackground,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Text(""),
+      ),
       body: LiquidPullToRefresh(
         onRefresh: _handleRefresh,
         color: Colors.yellow[700],
@@ -41,47 +45,58 @@ class _UserHomeState extends State<UserHome> {
                 height: 110,
                 decoration: BoxDecoration(),
                 child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.horizontal,
-                  itemCount:
-                      context.watch<CategoryProvider>().categories.length,
-                  itemBuilder: (context, index) => Column(
-                    children: [
-                      Card(
-                        // color: Colors.grey[300],
-                        elevation: 0,
-                        child: ClipRRect(
-                          // borderRadius: BorderRadius.circular(12),
-                          child: Container(
-                            height: 70,
-                            // width: 130,
-                            color: Colors.grey[300],
-                            child: Image.network(context
-                                .watch<CategoryProvider>()
-                                .categories[index]
-                                .image),
-                          ),
+                    padding: EdgeInsets.zero,
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                        context.watch<CategoryProvider>().categories.length,
+                    itemBuilder: (context, index) {
+                      var categories =
+                          context.watch<CategoryProvider>().categories;
+
+                      var selectedCategory =
+                          context.read<ItemProvider>().selectedCategory;
+
+                      return InkWell(
+                        onTap: () {
+                          var provider = context.read<ItemProvider>();
+                          provider.selectCategory(categories[index].id);
+                        },
+                        child: Column(
+                          children: [
+                            Card(
+                              // color: Colors.grey[300],
+                              elevation: 0,
+                              child: ClipRRect(
+                                // borderRadius: BorderRadius.circular(12),
+                                child: Container(
+                                  height: 70,
+                                  // width: 130,
+                                  color: Colors.grey[300],
+                                  child: Image.network(categories[index].image),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 20,
+                              width: 130,
+                              child: Text(
+                                categories[index].title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color:
+                                      selectedCategory == categories[index].id
+                                          ? Theme.of(context).primaryColor
+                                          : null,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Container(
-                        height: 20,
-                        width: 130,
-                        child: Text(
-                          context
-                              .watch<CategoryProvider>()
-                              .categories[index]
-                              .title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            overflow: TextOverflow.visible,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                      );
+                    }),
               ),
             ),
 
