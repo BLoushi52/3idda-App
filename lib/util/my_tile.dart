@@ -25,19 +25,20 @@ class _MyTileState extends State<MyTile> {
   }
 
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Slidable(
-            child: CupertinoButton(
-              onPressed: () {
-                context.go('/itemdetails', extra: widget.item);
-              },
-              child: Card(
-                margin: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+    return Column(
+      children: [
+        Slidable(
+          child: Container(
+            margin: const EdgeInsets.all(5),
+            child: Card(
+              margin: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: InkWell(
+                onTap: () {
+                  context.go('/itemdetails', extra: widget.item);
+                },
                 child: Row(
                   children: [
                     Container(
@@ -150,8 +151,8 @@ class _MyTileState extends State<MyTile> {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

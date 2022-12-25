@@ -41,6 +41,7 @@ class _UserHomeState extends State<UserHome> {
                 height: 110,
                 decoration: BoxDecoration(),
                 child: ListView.builder(
+                  padding: EdgeInsets.zero,
                   scrollDirection: Axis.horizontal,
                   itemCount:
                       context.watch<CategoryProvider>().categories.length,
