@@ -131,22 +131,80 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.yellow[700]),
                     child: CupertinoButton(
-                        padding: EdgeInsets.only(right: 0),
-                        child: Icon(
-                          Icons.menu,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          if (scaffoldKey.currentState!.isDrawerOpen) {
-                            scaffoldKey.currentState!.closeDrawer();
-                            //close drawer, if drawer is open
-                          } else {
-                            scaffoldKey.currentState!.openDrawer();
-                            //open drawer, if drawer is closed
-                          }
-                        }))),
-          ),
-          drawer: MyDrawer(),
+
+                      padding: EdgeInsets.only(right: 0),
+                      child: Icon(
+                        Icons.notifications_outlined,
+                        color: Colors.black,
+                        size: 25,
+                      ), //* Icon(Icons.notifications_active_outlined)
+                      onPressed: () {
+                        // Navigator.push(context, route);
+                      },
+                    ),
+                  ),
+                )
+              ],
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.location_on_outlined),
+                  Text(
+                    'Surra, Kuwait',
+                    style: TextStyle(
+                      fontSize: 16,
+                      // fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 6),
+                ],
+              ),
+              backgroundColor: Colors.grey[300],
+              foregroundColor: Colors.black,
+              elevation: 0,
+              leading: Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: Container(
+                      width: 45,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.yellow[700]),
+                      child: CupertinoButton(
+                          padding: EdgeInsets.only(right: 0),
+                          child: Icon(
+                            Icons.menu,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            if (scaffoldKey.currentState!.isDrawerOpen) {
+                              scaffoldKey.currentState!.closeDrawer();
+                              //close drawer, if drawer is open
+                            } else {
+                              scaffoldKey.currentState!.openDrawer();
+                              //open drawer, if drawer is closed
+                            }
+                          })))),
+          drawer:
+              MyDrawer(), //*    <----- CHANGE DRAWER WIDGET IF GUEST/SIGNED IN
+          // bottomNavigationBar: _bottomNav(sizingInformation), //* <-- OLD BOTTOM NAV
+          // bottomNavigationBar: BottomNavigationBar(   //*  <-- NAV BAR 2
+          //   selectedItemColor: Colors.black,
+          //   currentIndex: _selectedIndex,
+          //   onTap: _navigateBottomBar,
+          //   type: BottomNavigationBarType.fixed,
+          //   backgroundColor: Colors.grey[300],
+          //   elevation: 0,
+          //   items: [
+          //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          //     BottomNavigationBarItem(
+          //         icon: Icon(Icons.list_alt), label: 'My Rentals'),
+          //     BottomNavigationBarItem(
+          //         icon: Icon(Icons.handyman_outlined), label: 'My Equipment'),
+          //     BottomNavigationBarItem(
+          //         icon: Icon(Icons.person_outlined), label: 'Account'),
+          //   ],
+          // ),
+
           bottomNavigationBar: Container(
             color: Colors.grey[300],
             child: Padding(
