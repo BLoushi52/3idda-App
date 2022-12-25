@@ -67,14 +67,19 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation;
+  }
+
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
         builder: (BuildContext context, SizingInformation sizingInformation) {
       return Scaffold(
-          floatingActionButton: FloatingActionButton(
-              onPressed: _getCurrentLocation,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add)),
+          // floatingActionButton: FloatingActionButton(
+          //     onPressed: _getCurrentLocation,
+          //     tooltip: 'Increment',
+          //     child: const Icon(Icons.add)),
           key: scaffoldKey,
           backgroundColor: myDefaultBackground,
           appBar: AppBar(

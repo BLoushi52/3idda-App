@@ -41,14 +41,6 @@ class _RegisterPageState extends State<RegisterPage> {
         toolbarHeight: 40,
         elevation: 0,
         backgroundColor: Colors.grey[300],
-        // title: Text(
-        //   'Register',
-        //   style: TextStyle(
-        //     color: Colors.black,
-        //     fontSize: 25,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
         leading: GestureDetector(
           onTap: () {
             context.pop();
@@ -342,74 +334,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     const SizedBox(height: 10),
 
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    //   child: TextFormField(
-                    //     decoration: InputDecoration(
-                    //         enabledBorder: const OutlineInputBorder(
-                    //           borderSide: BorderSide(color: Colors.white),
-                    //         ),
-                    //         focusedBorder: OutlineInputBorder(
-                    //           borderSide:
-                    //               BorderSide(color: Colors.grey.shade400),
-                    //         ),
-                    //         fillColor: Colors.grey.shade200,
-                    //         filled: true,
-                    //         hintText: 'Mobile Number',
-                    //         hintStyle: TextStyle(color: Colors.grey[500])),
-                    //     controller: mobileNumberController,
-                    //     obscureText: false,
-                    //     validator: (value) {
-                    //       if (value == null || value.isEmpty) {
-                    //         return "Required field";
-                    //       }
-                    //       return null;
-                    //     },
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 10),
-
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    //   child: TextFormField(
-                    //     decoration: InputDecoration(
-                    //         enabledBorder: const OutlineInputBorder(
-                    //           borderSide: BorderSide(color: Colors.white),
-                    //         ),
-                    //         focusedBorder: OutlineInputBorder(
-                    //           borderSide:
-                    //               BorderSide(color: Colors.grey.shade400),
-                    //         ),
-                    //         fillColor: Colors.grey.shade200,
-                    //         filled: true,
-                    //         hintText: 'Civil ID Number',
-                    //         hintStyle: TextStyle(color: Colors.grey[500])),
-                    //     controller: civilIDNumberController,
-                    //     obscureText: false,
-                    //     validator: (value) {
-                    //       if (value == null || value.isEmpty) {
-                    //         return "Required field";
-                    //       }
-                    //       return null;
-                    //     },
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 10),
-
-                    // forgot password?
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.end,
-                    //     children: [
-                    //       Text(
-                    //         'Forgot Password?',
-                    //         style: TextStyle(color: Colors.grey[600]),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
                     const SizedBox(height: 20),
 
                     // sign in button
@@ -439,74 +363,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
                       },
                     ),
-
-                    // const SizedBox(height: 50),
-
-                    //*  or continue with
-
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    //   child: Row(
-                    //     children: [
-                    //       Expanded(
-                    //         child: Divider(
-                    //           thickness: 0.5,
-                    //           color: Colors.grey[400],
-                    //         ),
-                    //       ),
-                    //       Padding(
-                    //         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    //         child: Text(
-                    //           'Or continue with',
-                    //           style: TextStyle(color: Colors.grey[700]),
-                    //         ),
-                    //       ),
-                    //       Expanded(
-                    //         child: Divider(
-                    //           thickness: 0.5,
-                    //           color: Colors.grey[400],
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
-                    // const SizedBox(height: 50),
-
-                    // //* google + apple sign in buttons
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: const [
-                    //     // google button
-                    //     SquareTile(imagePath: 'assets/google.png'),
-
-                    //     SizedBox(width: 25),
-
-                    //     // apple button
-                    //     SquareTile(imagePath: 'assets/apple.png')
-                    //   ],
-                    // ),
-
-                    // const SizedBox(height: 50),
-
-                    // //* not a member? register now
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Text(
-                    //       'Not a member?',
-                    //       style: TextStyle(color: Colors.grey[700]),
-                    //     ),
-                    //     const SizedBox(width: 4),
-                    //     const Text(
-                    //       'Register now',
-                    //       style: TextStyle(
-                    //         color: Colors.blue,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
