@@ -54,6 +54,12 @@
 	<string>I want to use your photos</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>I want to use your photos</string>
+
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs access to location when open.</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>This app needs access to location when in the background.</string>
 	
 </dict>
 </plist>
