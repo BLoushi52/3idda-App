@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Icon(Icons.location_on_outlined),
                   Text(
                     'Surra, Kuwait',
                     style: TextStyle(
@@ -87,7 +88,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(width: 6),
-                  Icon(Icons.pin_drop_outlined),
                 ],
               ),
               backgroundColor: Colors.grey[300],
