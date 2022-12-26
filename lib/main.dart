@@ -3,25 +3,26 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/model/address_model.dart';
 import 'package:rental_app/model/item_model.dart';
+import 'package:rental_app/pages/confirmation_page.dart';
 import 'package:rental_app/providers/address_provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
 import 'package:rental_app/providers/favorite_provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 import 'package:rental_app/providers/myorder_provider.dart';
-import 'package:rental_app/screen/add_address_page.dart';
-import 'package:rental_app/screen/add_item_page.dart';
-import 'package:rental_app/screen/edit_address_page.dart';
-import 'package:rental_app/screen/edit_item_page.dart';
-import 'package:rental_app/screen/login_page.dart';
-import 'package:rental_app/screen/myaddress.dart';
-import 'package:rental_app/screen/pages/myfavorite.dart';
-import 'package:rental_app/screen/pages/myitems.dart';
-import 'package:rental_app/screen/myitems_details.dart';
+import 'package:rental_app/pages/add_address_page.dart';
+import 'package:rental_app/pages/add_item_page.dart';
+import 'package:rental_app/pages/edit_address_page.dart';
+import 'package:rental_app/pages/edit_item_page.dart';
+import 'package:rental_app/pages/login_page.dart';
+import 'package:rental_app/pages/myaddress_page.dart';
+import 'package:rental_app/pages/myfavorite_page.dart';
+import 'package:rental_app/pages/myitems_page.dart';
+import 'package:rental_app/pages/myitems_details_page.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
-import 'screen/home_screen.dart';
-import 'screen/register_page.dart';
+import 'pages/homescreen_page.dart';
+import 'pages/register_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -109,6 +110,10 @@ final router = GoRouter(
     GoRoute(
       path: '/myfavorite',
       builder: (context, state) => MyFavoriteView(),
+    ),
+    GoRoute(
+      path: '/confirm',
+      builder: (context, state) => ConfirmationPage(),
     ),
   ],
 );

@@ -5,10 +5,10 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:rental_app/constraints.dart';
-import 'package:rental_app/screen/pages/account.dart';
-import 'package:rental_app/screen/pages/Home.dart';
-import 'package:rental_app/screen/pages/myitems.dart';
-import 'package:rental_app/screen/pages/myorder.dart';
+import 'package:rental_app/pages/account_page.dart';
+import 'package:rental_app/pages/user_home_page.dart';
+import 'package:rental_app/pages/myitems_page.dart';
+import 'package:rental_app/pages/myorder_page.dart';
 import 'package:rental_app/widgets/my_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

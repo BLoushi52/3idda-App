@@ -1,22 +1,22 @@
 import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/model/category_model.dart';
-import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 
-class EditItemPage extends StatefulWidget {
-  final Item item;
-  EditItemPage({required this.item, super.key});
+class AddItemPage extends StatefulWidget {
+  const AddItemPage({super.key});
 
   @override
-  State<EditItemPage> createState() => _EditItemPageState();
+  State<AddItemPage> createState() => _AddItemPageState();
 }
 
-class _EditItemPageState extends State<EditItemPage> {
+class _AddItemPageState extends State<AddItemPage> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   final priceController = TextEditingController();
@@ -30,28 +30,35 @@ class _EditItemPageState extends State<EditItemPage> {
   var formKey = GlobalKey<FormState>();
 
   @override
-  void initState() {
-    super.initState();
-    titleController.text = widget.item.title;
-    descriptionController.text = widget.item.description;
-    priceController.text = widget.item.price.toString();
-    value = context
-        .read<CategoryProvider>()
-        .categories
-        .firstWhere((element) => element.id == widget.item.category);
-
-    // ingredientController.text = widget.recipe.ingredient as String;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         toolbarHeight: 40,
         elevation: 0,
-        title: Text("Edit Item"),
-        backgroundColor: Colors.yellow[700],
+        leadingWidth: 68,
+        title: Text("Add Item"),
+        backgroundColor: Colors.grey[300],
         foregroundColor: Colors.black,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 25),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.yellow[700]),
+            child: CupertinoButton(
+              padding: EdgeInsets.only(right: 0),
+              child: Icon(
+                Icons.chevron_left,
+                color: Colors.black,
+                size: 28,
+              ),
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ),
+        ),
       ),
       body: ListView(
         children: [
@@ -62,11 +69,11 @@ class _EditItemPageState extends State<EditItemPage> {
                 children: [
                   Container(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: TextFormField(
                         controller: titleController,
                         decoration: InputDecoration(
-                          hintText: "Title",
+                          hintText: "Item Name",
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey.shade500),
                           ),
@@ -90,6 +97,7 @@ class _EditItemPageState extends State<EditItemPage> {
                           size: 30,
                         ),
                         isExpanded: true,
+                        hint: Text("Category"),
                         value: value,
                         items: context
                             .watch<CategoryProvider>()
@@ -103,7 +111,7 @@ class _EditItemPageState extends State<EditItemPage> {
                             )),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: TextFormField(
                       controller: descriptionController,
                       decoration: InputDecoration(
@@ -122,7 +130,7 @@ class _EditItemPageState extends State<EditItemPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: TextFormField(
                       controller: priceController,
                       keyboardType: TextInputType.number,
@@ -141,7 +149,6 @@ class _EditItemPageState extends State<EditItemPage> {
                       },
                     ),
                   ),
-                  SizedBox(height: 20),
                   if (imageFile != null)
                     Image.file(
                       imageFile!,
@@ -149,37 +156,44 @@ class _EditItemPageState extends State<EditItemPage> {
                       height: 100,
                     )
                   else
-                    Image.network(
-                      widget.item.image,
+                    Container(
                       width: 100,
-                      height: 100,
+                      height: 20,
                     ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.yellow[700],
-                          foregroundColor: Colors.black,
-                          fixedSize: Size.fromWidth(150)),
-                      onPressed: () async {
-                        var file = await ImagePicker()
-                            .pickImage(source: ImageSource.gallery);
+                  Column(
+                    children: [
+                      Icon(
+                        Icons.image_outlined,
+                        size: 55,
+                        color: Colors.grey[500],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.yellow[700],
+                            foregroundColor: Colors.black,
+                          ),
+                          onPressed: () async {
+                            var file = await ImagePicker()
+                                .pickImage(source: ImageSource.gallery);
 
-                        if (file == null) {
-                          print("Use didn't select a file");
-                          return;
-                        }
+                            if (file == null) {
+                              print("User didn't select a file");
+                              return;
+                            }
 
-                        setState(() {
-                          imageFile = File(file.path);
-                          imageError = null;
-                        });
-                      },
-                      child: Text(
-                        "Edit Image",
-                        style: TextStyle(
-                          fontSize: 15,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      )),
+                            setState(() {
+                              imageFile = File(file.path);
+                              imageError = null;
+                            });
+                          },
+                          child: Text(
+                            "Choose an Image",
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          )),
+                    ],
+                  ),
                   if (imageError != null)
                     Text(
                       imageError!,
@@ -198,23 +212,29 @@ class _EditItemPageState extends State<EditItemPage> {
                       onPressed: () async {
                         // form
 
-                        {
-                          await context.read<MyItemProvider>().editItem(
-                                id: widget.item.id,
+                        if (imageFile == null) {
+                          setState(() {
+                            imageError = "Required field";
+                          });
+                        }
+
+                        if (formKey.currentState!.validate() &&
+                            imageFile != null) {
+                          await context.read<MyItemProvider>().addItem(
                                 title: titleController.text,
-                                category: value!.id,
-                                image: imageFile,
                                 description: descriptionController.text,
-                                price: priceController.text.toString(),
+                                price: priceController.text,
+                                category: value!.id,
+                                image: imageFile!,
                               );
 
                           context.pop();
                         }
                       },
                       child: Text(
-                        "Save",
+                        "Add Item",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ))

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/login_button.dart';
 import '../../widgets/my_textfield.dart';
 import '../../widgets/square_tile.dart';
 import '../providers/auth_provider.dart';
@@ -26,11 +25,6 @@ class LoginPage extends StatelessWidget {
             children: [
               const SizedBox(height: 10),
 
-              // // logo
-              // const Icon(
-              //   Icons.lock,
-              //   size: 100,
-              // ),
               Image.asset(
                 'assets/3idda-logo-black.png',
                 width: 250,
@@ -77,8 +71,13 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 35),
               Padding(
                 padding: const EdgeInsets.only(top: 22),
-                child: LoginButton(
-                  onTap: () async {
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow[700],
+                    foregroundColor: Colors.black,
+                    padding: EdgeInsets.symmetric(horizontal: 80),
+                  ),
+                  onPressed: () async {
                     var success = await context.read<AuthProvider>().login(
                         username: usernameController.text,
                         password: passwordController.text);
@@ -106,14 +105,26 @@ class LoginPage extends StatelessWidget {
                         ),
                       );
                   },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 55, vertical: 10),
+                    child: Text(
+                      "Log In",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
               ),
 
-              // sign in button
+              //* sign in button
 
               const SizedBox(height: 50),
 
-              // or continue with
+              //* or continue with
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
@@ -144,6 +155,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 10),
 
               //* google + apple sign in buttons
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -162,6 +174,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               //* not a member? register now
+
               Column(
                 children: [
                   Row(

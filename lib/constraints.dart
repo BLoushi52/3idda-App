@@ -3,122 +3,12 @@ import 'package:flutter/material.dart';
 
 var myDefaultBackground = Colors.grey[300];
 
-// var myAppBar = AppBar(
-//   backgroundColor: Colors.yellow,
-// );
-
-// var myDrawer = Drawer(
-//   backgroundColor: Colors.yellow[700], //*   <------ Previously grey[300]
-//   child: Column(children: [
-//     Padding(
-//       padding: const EdgeInsets.only(
-//         top: 100,
-//         bottom: 50,
-//       ),
-//       child: Column(
-//         children: [
-//           Icon(
-//             Icons.person,
-//             size: 75,
-//             color: Colors.black,
-//           ),
-//           SizedBox(
-//             height: 5,
-//           ),
-//           Text(
-//             'Hi (username)!',
-//             style: TextStyle(
-//               fontSize: 20,
-//               fontWeight: FontWeight.bold,
-//             ),
-//           ),
-//         ],
-//       ),
-//     ),
-//     ListTile(
-//       leading: Icon(
-//         Icons.home,
-//         color: Colors.black,
-//       ),
-//       title: Text(
-//         'D A S H B O A R D',
-//         style: TextStyle(
-//           color: Colors.black,
-//         ),
-//       ),
-//     ),
-//     ListTile(
-//       leading: Icon(
-//         Icons.list,
-//         color: Colors.black,
-//       ),
-//       title: Text(
-//         'O R D E R S',
-//         style: TextStyle(
-//           color: Colors.black,
-//         ),
-//       ),
-//     ),
-//     ListTile(
-//       leading: Icon(
-//         Icons.favorite,
-//         color: Colors.black,
-//       ),
-//       title: Text(
-//         'F A V O R I T E S',
-//         style: TextStyle(
-//           color: Colors.black,
-//         ),
-//       ),
-//     ),
-//     ListTile(
-//       leading: Icon(
-//         Icons.menu_book,
-//         color: Colors.black,
-//       ),
-//       title: Text(
-//         'A D D R E S S   B O O K',
-//         style: TextStyle(
-//           color: Colors.black,
-//         ),
-//       ),
-//     ),
-//     ListTile(
-//       leading: Icon(
-//         Icons.settings,
-//         color: Colors.black,
-//       ),
-//       title: Text(
-//         'S E T T I N G S',
-//         style: TextStyle(
-//           color: Colors.black,
-//         ),
-//       ),
-//     ),
-//     ListTile(
-//       leading: Icon(
-//         Icons.logout,
-//         color: Colors.black,
-//       ),
-//       title: Text(
-//         'L O G O U T',
-//         style: TextStyle(
-//           color: Colors.black,
-//         ),
-//       ),
-//     ),
-//   ]),
-// );
-
 TextEditingController? textEditingController = TextEditingController();
 
 var mySearch = Padding(
   padding: const EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 6),
   child: CupertinoSearchTextField(
-    onChanged: (value) {
-      // recipes =
-      //     recipes.where((element) => element.contains(value)).toList();
-    },
+    onChanged: (value) {},
     controller: textEditingController,
     placeholder: 'Search categories',
     autocorrect: false,
@@ -411,29 +301,6 @@ Widget buildSheet(BuildContext cc) => DraggableScrollableSheet(
                           )),
                     ),
                   ),
-                  // SizedBox(
-                  //   height: 2,
-                  // ),
-                  // Center(
-                  //   child: Container(
-                  //     width: 200,
-                  //     child: ElevatedButton(
-                  //         style: ElevatedButton.styleFrom(
-                  //           backgroundColor: Colors.grey[400],
-                  //         ),
-                  //         onPressed: () {
-                  //           // Navigator.of(context).pop();      //* <----- ASK FOR HELP
-                  //         },
-                  //         child: Text(
-                  //           'Cancel',
-                  //           style: TextStyle(
-                  //             color: Colors.black,
-                  //             fontSize: 17,
-                  //             // fontWeight: FontWeight.bold,
-                  //           ),
-                  //         )),
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 10,
                   ),
