@@ -60,6 +60,8 @@ class AuthProvider extends ChangeNotifier {
     username = tokenMap['username'];
     firstName = tokenMap['first_name'];
     print('has token first name: ${firstName}');
+    Client.dio.options.headers[HttpHeaders.authorizationHeader] =
+        "Bearer $token";
     notifyListeners();
     return true;
   }

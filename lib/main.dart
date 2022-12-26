@@ -28,14 +28,8 @@ import 'pages/register_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var authProvider = AuthProvider();
-  var isAuth = await authProvider.hasToken();
 
-  print("isAuth $isAuth");
-
-  runApp(MyApp(
-    authProvider: authProvider,
-  ));
+  runApp(MyApp());
 }
 
 final router = GoRouter(
@@ -127,10 +121,7 @@ final router = GoRouter(
 );
 
 class MyApp extends StatelessWidget {
-  final AuthProvider authProvider;
-  MyApp({
-    required this.authProvider,
-  });
+  MyApp();
 
   // This widget is the root of your application.
   @override
@@ -140,7 +131,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ItemProvider()),
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
         ChangeNotifierProvider(create: (context) => MyItemProvider()),
-        ChangeNotifierProvider(create: (context) => authProvider),
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => MyOrderProvider()),
         ChangeNotifierProvider(create: (context) => AddressProvider()),
         ChangeNotifierProvider(create: (context) => FavoriteProvider()),
