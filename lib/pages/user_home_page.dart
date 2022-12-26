@@ -97,17 +97,36 @@ class _UserHomeState extends State<UserHome> {
 
             //* tiles below it
 
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: context.watch<ItemProvider>().items.length,
-                itemBuilder: (context, index) {
-                  return MyTile(
-                    item: context.watch<ItemProvider>().items[index],
-                  );
-                },
-              ),
-            ),
+            context.watch<ItemProvider>().items.length == 0
+                ? Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 36),
+                          child: Text(
+                            "Opss, It looks like there is no items in this category.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.grey[700],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Expanded(
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: context.watch<ItemProvider>().items.length,
+                      itemBuilder: (context, index) {
+                        return MyTile(
+                          item: context.watch<ItemProvider>().items[index],
+                        );
+                      },
+                    ),
+                  ),
           ],
         ),
       ),
