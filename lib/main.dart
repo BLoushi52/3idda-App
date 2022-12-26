@@ -145,9 +145,9 @@ class MyApp extends StatelessWidget {
         // darkTheme: ThemeData.dark(),
         theme: ThemeData(
             fontFamily: "Roboto",
-            primaryColor: Colors.red,
+            primaryColor: Colors.yellow[700],
             floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.yellow[700],
             )),
       ),
     );
