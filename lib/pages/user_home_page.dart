@@ -25,10 +25,6 @@ class _UserHomeState extends State<UserHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myDefaultBackground,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text(""),
-      ),
       body: LiquidPullToRefresh(
         onRefresh: _handleRefresh,
         color: Colors.yellow[700],
@@ -40,9 +36,9 @@ class _UserHomeState extends State<UserHome> {
           children: [
             mySearch,
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(12, 16, 12, 0),
+              padding: EdgeInsets.zero,
               child: Container(
-                height: 110,
+                height: 116,
                 decoration: BoxDecoration(),
                 child: ListView.builder(
                     padding: EdgeInsets.zero,
@@ -61,39 +57,36 @@ class _UserHomeState extends State<UserHome> {
                           var provider = context.read<ItemProvider>();
                           provider.selectCategory(categories[index].id);
                         },
-                        child: Column(
-                          children: [
-                            Card(
-                              // color: Colors.grey[300],
-                              elevation: 0,
-                              child: ClipRRect(
-                                // borderRadius: BorderRadius.circular(12),
-                                child: Container(
-                                  height: 70,
-                                  // width: 130,
-                                  color: Colors.grey[300],
-                                  child: Image.network(categories[index].image),
+                        child: Card(
+                          color: selectedCategory == categories[index].id
+                              ? Theme.of(context).primaryColor
+                              : null,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8),
+                                child: Image.network(categories[index].image,
+                                    fit: BoxFit.cover, height: 70),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                width: 130,
+                                child: Text(
+                                  categories[index].title,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.visible,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              height: 20,
-                              width: 130,
-                              child: Text(
-                                categories[index].title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color:
-                                      selectedCategory == categories[index].id
-                                          ? Theme.of(context).primaryColor
-                                          : null,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.visible,
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     }),
