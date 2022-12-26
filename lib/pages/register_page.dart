@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/register_button.dart';
 import '../providers/auth_provider.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -241,7 +240,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ],
                       ),
                     ),
-                    // username textfield
                     SizedBox(height: 4),
 
                     //* HEADER 2 - END
@@ -336,9 +334,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 20),
 
-                    // sign in button
-                    RegisterButton(
-                      onTap: () async {
+                    //* register button
+
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.yellow[700],
+                        foregroundColor: Colors.black,
+                        padding: EdgeInsets.symmetric(horizontal: 80),
+                      ),
+                      onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           var didRegister =
                               await context.read<AuthProvider>().register(
@@ -362,6 +366,17 @@ class _RegisterPageState extends State<RegisterPage> {
                           print("form not valid");
                         }
                       },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 55, vertical: 10),
+                        child: Text(
+                          "Register",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

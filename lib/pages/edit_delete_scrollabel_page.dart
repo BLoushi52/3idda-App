@@ -39,7 +39,7 @@ class _MyTileState extends State<MyTile> {
                   label: 'Edit',
                   onPressed: ((context) async {
                     await context.read<ItemProvider>();
-                    // .editEquipment; //*    <---------  EDIT RECIPE
+                    //*    <---------  EDIT EQUIPMENT
                   }),
                   backgroundColor: Colors.blue,
                   icon: Icons.edit,
@@ -54,7 +54,7 @@ class _MyTileState extends State<MyTile> {
                   label: 'Delete',
                   onPressed: ((context) async {
                     await context.read<ItemProvider>();
-                    // .deleteRecipe; //*    <---------  DELETE RECIPE
+                    //*    <---------  DELETE EQUIPMENT
                   }),
                   backgroundColor: Colors.red,
                   icon: Icons.delete,
@@ -118,7 +118,6 @@ class _MyTileState extends State<MyTile> {
                               style: TextStyle(
                                 color: Colors.grey[800],
                                 fontSize: 12,
-                                // fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),

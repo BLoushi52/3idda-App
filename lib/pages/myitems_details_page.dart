@@ -66,7 +66,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.yellow[700]),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: FavoriteButton(
                   isFavorite: false, // here we get it from api (As boolean)
                   valueChanged: () {},
@@ -171,35 +171,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal),
-                                // overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      // Padding(
-                      //   padding: EdgeInsets.all(8.0),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.start,
-                      //     crossAxisAlignment: CrossAxisAlignment.end,
-                      //     children: [
-                      //       Text(
-                      //         'Daily Price: ',
-                      //         textAlign: TextAlign.left,
-                      //         style:
-                      //             TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                      //         overflow: TextOverflow.ellipsis,
-                      //       ),
-                      //       Text(
-                      //         '${widget.item.price.toString()}00 KD',
-                      //         textAlign: TextAlign.left,
-                      //         style: TextStyle(
-                      //             fontSize: 14, fontWeight: FontWeight.normal),
-                      //         overflow: TextOverflow.ellipsis,
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
                       SizedBox(
                         height: 5,
                       ),
@@ -348,7 +324,9 @@ class _ItemDetailsState extends State<ItemDetails> {
                     foregroundColor: Colors.black,
                     padding: EdgeInsets.symmetric(horizontal: 20),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.go('/confirm');
+                  },
                   child: Text(
                     "Rent Item",
                     style: TextStyle(

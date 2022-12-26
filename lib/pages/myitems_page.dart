@@ -55,7 +55,6 @@ class _MyItemsViewState extends State<MyItemsView> {
                 ),
               ),
             ),
-            // SizedBox(height: 10),
 
             //*  category tabs
 
