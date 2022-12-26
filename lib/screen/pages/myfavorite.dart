@@ -5,11 +5,10 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/favorite_provider.dart';
 import 'package:rental_app/util/my_favorite.dart';
-
 import '../../constraints.dart';
 
 class MyFavoriteView extends StatefulWidget {
-  const MyFavoriteView({super.key});
+  MyFavoriteView({super.key});
 
   @override
   State<MyFavoriteView> createState() => _MyFavoriteViewState();
@@ -21,6 +20,11 @@ class _MyFavoriteViewState extends State<MyFavoriteView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<FavoriteProvider>().loadFavorites();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -79,10 +83,10 @@ class _MyFavoriteViewState extends State<MyFavoriteView> {
                 itemCount: context.watch<FavoriteProvider>().favorite.length,
                 itemBuilder: (context, index) => InkWell(
                   onTap: () {
-                    context.push(
-                      '/itemdetails',
-                      extra: context.read<FavoriteProvider>().favorite[index],
-                    );
+                    // context.push(
+                    //   '/favorite_details',
+                    //   extra: widget.favorite,
+                    // );
                   },
                   child: MyFavorite(
                     favorite: context.watch<FavoriteProvider>().favorite[index],

@@ -6,6 +6,7 @@ import '../client.dart';
 class FavoriteProvider extends ChangeNotifier {
   List<Favorite> favorite = [];
   bool isLoading = false;
+  bool isFavorite = false;
 
   FavoriteProvider() {
     loadFavorites();
@@ -44,11 +45,25 @@ class FavoriteProvider extends ChangeNotifier {
         }));
 
     loadFavorites();
+    notifyListeners();
   }
 
   void deleteFavorite(int id) async {
     await Client.dio.delete("/api/myfavorite/delete/$id/");
 
     loadFavorites();
+  }
+
+  Future<void> isFavorited(int id) async {
+    try {
+      var response = await Client.dio.get('/api/myfavorite/check/$id/');
+
+      var body = response.data;
+      isFavorite = body['is_exists'];
+      print('isFavorite: $isFavorite');
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
   }
 }

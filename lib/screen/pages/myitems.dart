@@ -20,6 +20,11 @@ class _MyItemsViewState extends State<MyItemsView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<MyItemProvider>().loadMyItems();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(

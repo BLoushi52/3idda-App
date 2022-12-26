@@ -12,6 +12,7 @@ import 'package:rental_app/screen/add_address_page.dart';
 import 'package:rental_app/screen/add_item_page.dart';
 import 'package:rental_app/screen/edit_address_page.dart';
 import 'package:rental_app/screen/edit_item_page.dart';
+import 'package:rental_app/screen/favorite_detail.dart';
 import 'package:rental_app/screen/login_page.dart';
 import 'package:rental_app/screen/myaddress.dart';
 import 'package:rental_app/screen/pages/myfavorite.dart';
@@ -20,6 +21,7 @@ import 'package:rental_app/screen/myitems_details.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
+import 'model/favorite_model.dart';
 import 'screen/home_screen.dart';
 import 'screen/register_page.dart';
 
@@ -76,6 +78,12 @@ final router = GoRouter(
       path: '/itemdetails',
       builder: (context, state) => ItemDetails(
         item: state.extra as Item,
+      ),
+    ),
+    GoRoute(
+      path: '/favorite_details',
+      builder: (context, state) => FavoriteDetail(
+        favorite: state.extra as Favorite,
       ),
     ),
     GoRoute(

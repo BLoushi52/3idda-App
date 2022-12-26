@@ -22,6 +22,14 @@ class _UserHomeState extends State<UserHome> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<ItemProvider>().loadItems();
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myDefaultBackground,

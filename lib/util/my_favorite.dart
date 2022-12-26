@@ -7,8 +7,6 @@ import 'package:rental_app/model/favorite_model.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/favorite_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
-import 'package:rental_app/providers/myitems_provider.dart';
-
 import '../model/category_model.dart';
 import '../providers/category_provider.dart';
 
@@ -50,6 +48,10 @@ class _MyFavoriteState extends State<MyFavorite> {
             ),
             child: CupertinoButton(
               onPressed: () {
+                context.push(
+                  '/favorite_details',
+                  extra: widget.favorite,
+                );
                 // context.push('/itemdetails', extra: widget.favorite);
               },
               child: Row(
