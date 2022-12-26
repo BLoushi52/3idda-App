@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:rental_app/model/address_model.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/pages/confirmation_page.dart';
+import 'package:rental_app/pages/favorite_detail_page.dart';
 import 'package:rental_app/providers/address_provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
 import 'package:rental_app/providers/favorite_provider.dart';
@@ -21,6 +22,7 @@ import 'package:rental_app/pages/myitems_details_page.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
+import 'model/favorite_model.dart';
 import 'pages/homescreen_page.dart';
 import 'pages/register_page.dart';
 
@@ -77,6 +79,12 @@ final router = GoRouter(
       path: '/itemdetails',
       builder: (context, state) => ItemDetails(
         item: state.extra as Item,
+      ),
+    ),
+    GoRoute(
+      path: '/favorite_details',
+      builder: (context, state) => FavoriteDetail(
+        favorite: state.extra as Favorite,
       ),
     ),
     GoRoute(

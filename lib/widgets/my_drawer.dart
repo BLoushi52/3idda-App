@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/auth_provider.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -66,6 +65,7 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             onTap: () {
               context.push('/myfavorite');
+              Navigator.pop(context);
             },
           ),
         if (context.watch<AuthProvider>().username != null)
@@ -100,6 +100,7 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             onTap: () {
               context.push('/login');
+              Navigator.pop(context);
             },
           ),
         if (context.watch<AuthProvider>().username == null)
@@ -118,6 +119,7 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             onTap: () {
               context.push('/register');
+              Navigator.pop(context);
             },
           ),
         GestureDetector(
@@ -155,6 +157,7 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             onTap: () {
               context.read<AuthProvider>().logout();
+              Navigator.pop(context);
             },
           ),
       ]),

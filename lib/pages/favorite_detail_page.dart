@@ -1,37 +1,30 @@
-import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:rental_app/model/category_model.dart';
-import 'package:rental_app/model/item_model.dart';
-import 'package:rental_app/providers/category_provider.dart';
+import '../model/favorite_model.dart';
+import '../model/item_model.dart';
+import '../providers/item_provider.dart';
 
-import '../providers/favorite_provider.dart';
-
-class ItemDetails extends StatefulWidget {
-  ItemDetails({super.key, required this.item});
-
-  final Item item;
+class FavoriteDetail extends StatefulWidget {
+  final Favorite favorite;
+  FavoriteDetail({required this.favorite, super.key});
 
   @override
-  State<ItemDetails> createState() => _ItemDetailsState();
+  State<FavoriteDetail> createState() => _FavoriteDetailState();
 }
 
-class _ItemDetailsState extends State<ItemDetails> {
-  @override
-  Category? category;
+class _FavoriteDetailState extends State<FavoriteDetail> {
+  Item? item;
 
   @override
   void initState() {
     super.initState();
 
-    category = context
-        .read<CategoryProvider>()
-        .categories
-        .firstWhere((element) => element.id == widget.item.category);
-
-    context.read<FavoriteProvider>().isFavorited(widget.item.id);
+    item = context
+        .read<ItemProvider>()
+        .items
+        .firstWhere((element) => element.id == widget.favorite.item);
   }
 
   Widget build(BuildContext context) {
@@ -57,46 +50,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                 size: 28,
               ),
               onPressed: () {
-                context.go('/home');
+                context.pop();
               },
             ),
           ),
         ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 25),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.yellow[700]),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: FavoriteButton(
-                  isFavorite: context
-                      .watch<FavoriteProvider>()
-                      .isFavorite, // here we get it from api (As boolean)
-                  valueChanged: () {
-                    if (context.watch<FavoriteProvider>().isFavorite == false) {
-                      context
-                          .read<FavoriteProvider>()
-                          .addFavorite(item: widget.item.id);
-                      print('added to favorites');
-                      // print('Is Favourite $_isFavourite');
-                    }
-                    //wrap in futureBuilder
-                    else if (context.watch<FavoriteProvider>().isFavorite ==
-                        true) {
-                      context
-                          .read<FavoriteProvider>()
-                          .deleteFavorite(widget.item.id);
-                    }
-                  },
-                  iconSize: 30,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 12),
@@ -107,7 +65,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 0.0),
                   child: Image.network(
-                    widget.item.image,
+                    item!.image,
                     height: 300,
                     fit: BoxFit.cover,
                     width: double.infinity,
@@ -129,7 +87,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                           children: [
                             Expanded(
                               child: Text(
-                                widget.item.title,
+                                item!.title,
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -152,14 +110,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                                     fontSize: 15, fontWeight: FontWeight.bold),
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              Text(
-                                '${category!.title.toString()}',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              // Text(
+                              //   '${category!.title.toString()}',
+                              //   textAlign: TextAlign.left,
+                              //   style: TextStyle(
+                              //       fontSize: 14,
+                              //       fontWeight: FontWeight.normal),
+                              //   overflow: TextOverflow.ellipsis,
+                              // ),
                             ],
                           ),
                         ),
@@ -187,16 +145,40 @@ class _ItemDetailsState extends State<ItemDetails> {
                           children: [
                             Expanded(
                               child: Text(
-                                widget.item.description,
+                                item!.description,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal),
+                                // overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
                         ),
                       ),
+                      // Padding(
+                      //   padding: EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     crossAxisAlignment: CrossAxisAlignment.end,
+                      //     children: [
+                      //       Text(
+                      //         'Daily Price: ',
+                      //         textAlign: TextAlign.left,
+                      //         style:
+                      //             TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      //         overflow: TextOverflow.ellipsis,
+                      //       ),
+                      //       Text(
+                      //         '${widget.item.price.toString()}00 KD',
+                      //         textAlign: TextAlign.left,
+                      //         style: TextStyle(
+                      //             fontSize: 14, fontWeight: FontWeight.normal),
+                      //         overflow: TextOverflow.ellipsis,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 5,
                       ),
@@ -243,7 +225,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                     padding: EdgeInsets.only(
                                         left: 10, right: 10, bottom: 20),
                                     child: Text(
-                                      'KD ${widget.item.price.toString()}00',
+                                      'KD ${item!.price.toString()}00',
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -280,7 +262,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                         left: 10, right: 10, bottom: 20),
                                     child: Text(
                                       'KD ' +
-                                          (widget.item.price * 4).toString() +
+                                          (item!.price * 4).toString() +
                                           '00',
                                       style: TextStyle(
                                         fontSize: 14,
@@ -317,7 +299,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                         left: 10, right: 10, bottom: 20),
                                     child: Text(
                                       'KD ' +
-                                          (widget.item.price * 16).toString() +
+                                          (item!.price * 16).toString() +
                                           '00',
                                       style: TextStyle(
                                         fontSize: 14,
@@ -345,9 +327,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                     foregroundColor: Colors.black,
                     padding: EdgeInsets.symmetric(horizontal: 20),
                   ),
-                  onPressed: () {
-                    context.go('/confirm');
-                  },
+                  onPressed: () {},
                   child: Text(
                     "Rent Item",
                     style: TextStyle(
