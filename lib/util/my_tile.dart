@@ -1,12 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:rental_app/model/item_model.dart';
-
-import '../model/category_model.dart';
-import '../providers/category_provider.dart';
 
 class MyTile extends StatefulWidget {
   final Item item;
@@ -20,8 +15,6 @@ class _MyTileState extends State<MyTile> {
   @override
   void initState() {
     super.initState();
-
-    // category = ;
   }
 
   Widget build(BuildContext context) {
@@ -64,18 +57,7 @@ class _MyTileState extends State<MyTile> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                context
-                                    .watch<CategoryProvider>()
-                                    .categories
-                                    .firstWhere(
-                                      (element) =>
-                                          element.id == widget.item.category,
-                                      orElse: () => Category(
-                                          id: 2,
-                                          title: 'other',
-                                          image: 'image'),
-                                    )
-                                    .title,
+                                widget.item.category,
                                 style: TextStyle(
                                   color: Colors.grey[800],
                                   fontSize: 12,

@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/model/order_model.dart';
-import 'package:rental_app/providers/item_provider.dart';
 
 class MyOrder extends StatefulWidget {
   final Order order;
@@ -73,20 +70,7 @@ class _MyOrderState extends State<MyOrder> {
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          context
-                              .watch<ItemProvider>()
-                              .items
-                              .firstWhere(
-                                (element) => element.id == widget.order.item,
-                                orElse: () => Item(
-                                    id: 2,
-                                    title: 'other',
-                                    description: 'other',
-                                    category: 2,
-                                    price: 2,
-                                    image: 'image'),
-                              )
-                              .image,
+                          widget.order.item.image,
                         ),
                       ),
                     ),
@@ -98,20 +82,7 @@ class _MyOrderState extends State<MyOrder> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          context
-                              .watch<ItemProvider>()
-                              .items
-                              .firstWhere(
-                                (element) => element.id == widget.order.item,
-                                orElse: () => Item(
-                                    id: 2,
-                                    title: 'other',
-                                    description: 'other',
-                                    category: 2,
-                                    price: 2,
-                                    image: 'image'),
-                              )
-                              .title,
+                          widget.order.item.title,
                           style: TextStyle(
                             fontSize: 17,
                             color: Colors.black87,

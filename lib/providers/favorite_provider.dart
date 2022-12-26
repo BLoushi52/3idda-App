@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:rental_app/model/favorite_model.dart';
 import '../client.dart';
+import '../model/item_model.dart';
 
 class FavoriteProvider extends ChangeNotifier {
-  List<Favorite> favorite = [];
+  List<Item> favorite = [];
   bool isLoading = false;
   bool isFavorite = false;
 
@@ -25,7 +25,7 @@ class FavoriteProvider extends ChangeNotifier {
 
       favorite = body
           .map(
-            (json) => Favorite.fromMap(json),
+            (json) => Item.fromMap(json),
           )
           .toList();
 
@@ -48,7 +48,9 @@ class FavoriteProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteFavorite(int id) async {
+  void deleteFavorite({
+    required int id,
+  }) async {
     await Client.dio.delete("/api/myfavorite/delete/$id/");
 
     loadFavorites();

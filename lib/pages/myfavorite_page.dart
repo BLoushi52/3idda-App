@@ -22,7 +22,10 @@ class _MyFavoriteViewState extends State<MyFavoriteView> {
   @override
   void initState() {
     super.initState();
-    context.read<FavoriteProvider>().loadFavorites();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<FavoriteProvider>().loadFavorites();
+    });
   }
 
   Widget build(BuildContext context) {
@@ -89,7 +92,7 @@ class _MyFavoriteViewState extends State<MyFavoriteView> {
                     );
                   },
                   child: MyFavorite(
-                    favorite: context.watch<FavoriteProvider>().favorite[index],
+                    item: context.watch<FavoriteProvider>().favorite[index],
                   ),
                 ),
               ),

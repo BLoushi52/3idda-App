@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:rental_app/model/category_model.dart';
 import 'package:rental_app/model/item_model.dart';
-import 'package:rental_app/providers/category_provider.dart';
 
 import '../providers/favorite_provider.dart';
 
@@ -19,19 +17,20 @@ class ItemDetails extends StatefulWidget {
 }
 
 class _ItemDetailsState extends State<ItemDetails> {
-  @override
-  Category? category;
+  late Future<bool> isFavorite;
 
   @override
   void initState() {
     super.initState();
 
-    category = context
-        .read<CategoryProvider>()
-        .categories
-        .firstWhere((element) => element.id == widget.item.category);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      // context.read<FavoriteProvider>().isFavorited(widget.item.id).then((_) {
+      //   setState(() {});
+      // });
+    });
 
-    context.read<FavoriteProvider>().isFavorited(widget.item.id);
+    isFavorite = widget.item.isFavorited();
+    ;
   }
 
   Widget build(BuildContext context) {
@@ -71,28 +70,38 @@ class _ItemDetailsState extends State<ItemDetails> {
                   color: Colors.yellow[700]),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: FavoriteButton(
-                  isFavorite: context
-                      .watch<FavoriteProvider>()
-                      .isFavorite, // here we get it from api (As boolean)
-                  valueChanged: () {
-                    if (context.watch<FavoriteProvider>().isFavorite == false) {
-                      context
-                          .read<FavoriteProvider>()
-                          .addFavorite(item: widget.item.id);
-                      print('added to favorites');
-                      // print('Is Favourite $_isFavourite');
-                    }
-                    //wrap in futureBuilder
-                    else if (context.watch<FavoriteProvider>().isFavorite ==
-                        true) {
-                      context
-                          .read<FavoriteProvider>()
-                          .deleteFavorite(widget.item.id);
-                    }
-                  },
-                  iconSize: 30,
-                ),
+                child: FutureBuilder(
+                    future: isFavorite,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+
+                      return FavoriteButton(
+                        isFavorite: snapshot
+                            .data, // here we get it from api (As boolean)
+                        valueChanged: (_isFavorite) {
+                          if (context.read<FavoriteProvider>().isFavorite ==
+                              false) {
+                            context
+                                .read<FavoriteProvider>()
+                                .addFavorite(item: widget.item.id);
+                            print('added to favorites');
+                            // print('Is Favourite $_isFavourite');
+                          }
+                          //wrap in futureBuilder
+                          else {
+                            context
+                                .read<FavoriteProvider>()
+                                .deleteFavorite(id: widget.item.id);
+                            print('delete to favorites');
+                          }
+                          ;
+                        },
+
+                        iconSize: 30,
+                      );
+                    }),
               ),
             ),
           ),
@@ -153,7 +162,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                '${category!.title.toString()}',
+                                '${widget.item.category}',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontSize: 14,

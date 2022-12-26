@@ -1,20 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:rental_app/model/favorite_model.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/favorite_provider.dart';
-import 'package:rental_app/providers/item_provider.dart';
-import 'package:rental_app/providers/myitems_provider.dart';
-
-import '../model/category_model.dart';
-import '../providers/category_provider.dart';
 
 class MyFavorite extends StatefulWidget {
-  final Favorite favorite;
-  const MyFavorite({required this.favorite, super.key});
+  final Item item;
+  const MyFavorite({required this.item, super.key});
 
   @override
   State<MyFavorite> createState() => _MyFavoriteState();
@@ -28,7 +20,7 @@ class _MyFavoriteState extends State<MyFavorite> {
 
   Widget build(BuildContext context) {
     return Container(
-      // height: 133,
+      height: 133,
       child: Column(
         children: [
           Slidable(
@@ -41,17 +33,15 @@ class _MyFavoriteState extends State<MyFavorite> {
                   onPressed: (context) {
                     context
                         .read<FavoriteProvider>()
-                        .deleteFavorite(widget.favorite.id);
+                        .deleteFavorite(id: widget.item.id);
                   },
                   backgroundColor: Colors.red,
                   icon: Icons.delete,
                 ),
               ],
             ),
-            child: CupertinoButton(
-              onPressed: () {
-                // context.push('/itemdetails', extra: widget.favorite);
-              },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   Container(
@@ -62,22 +52,7 @@ class _MyFavoriteState extends State<MyFavorite> {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                          context
-                              .watch<ItemProvider>()
-                              .items
-                              .firstWhere(
-                                (element) => element.id == widget.favorite.item,
-                                orElse: () => Item(
-                                    id: 2,
-                                    title: 'other',
-                                    description: 'other',
-                                    category: 2,
-                                    price: 2,
-                                    image: 'image'),
-                              )
-                              .image,
-                        ),
+                        image: NetworkImage(widget.item.image),
                       ),
                     ),
                   ),
@@ -93,18 +68,7 @@ class _MyFavoriteState extends State<MyFavorite> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 0),
                               child: Text(
-                                context
-                                    .watch<CategoryProvider>()
-                                    .categories
-                                    .firstWhere(
-                                      (element) =>
-                                          element.id == widget.favorite.item,
-                                      orElse: () => Category(
-                                          id: 2,
-                                          title: 'other',
-                                          image: 'image'),
-                                    )
-                                    .title,
+                                widget.item.category.toString(),
                                 style: TextStyle(
                                   color: Colors.grey[800],
                                   fontSize: 12,
@@ -132,20 +96,7 @@ class _MyFavoriteState extends State<MyFavorite> {
                           ],
                         ),
                         Text(
-                          context
-                              .watch<ItemProvider>()
-                              .items
-                              .firstWhere(
-                                (element) => element.id == widget.favorite.item,
-                                orElse: () => Item(
-                                    id: 2,
-                                    title: 'other',
-                                    description: 'other',
-                                    category: 2,
-                                    price: 2,
-                                    image: 'image'),
-                              )
-                              .title,
+                          widget.item.title,
                           style: TextStyle(
                             fontSize: 17,
                             color: Colors.black87,
@@ -154,20 +105,7 @@ class _MyFavoriteState extends State<MyFavorite> {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          context
-                              .watch<ItemProvider>()
-                              .items
-                              .firstWhere(
-                                (element) => element.id == widget.favorite.item,
-                                orElse: () => Item(
-                                    id: 2,
-                                    title: 'other',
-                                    description: 'other',
-                                    category: 2,
-                                    price: 2,
-                                    image: 'image'),
-                              )
-                              .description,
+                          widget.item.description,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -181,17 +119,7 @@ class _MyFavoriteState extends State<MyFavorite> {
                         Row(
                           children: [
                             Text(
-                              "KD ${context.watch<ItemProvider>().items.firstWhere(
-                                    (element) =>
-                                        element.id == widget.favorite.item,
-                                    orElse: () => Item(
-                                        id: 2,
-                                        title: 'other',
-                                        description: 'other',
-                                        category: 2,
-                                        price: 2,
-                                        image: 'image'),
-                                  ).price}",
+                              "KD ${widget.item.price}",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 13,

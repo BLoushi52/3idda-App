@@ -1,6 +1,8 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rental_app/providers/auth_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,8 +16,16 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(milliseconds: 2500), () {
-      context.go('/login');
+    Future.delayed(Duration(milliseconds: 1000), () async {
+      var isAuth = await context.read<AuthProvider>().hasToken();
+
+      print("isAuth $isAuth");
+
+      if (isAuth) {
+        context.go('/home');
+      } else {
+        context.go('/login');
+      }
     });
   }
 
@@ -45,13 +55,14 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       )
           .animate(
-            delay: Duration(milliseconds: 500),
+            delay: Duration(milliseconds: 250),
           )
-          .fade(duration: Duration(milliseconds: 500))
+          .fade(duration: Duration(milliseconds: 250))
           .scale(
               duration: Duration(
-                milliseconds: 1000,
+                milliseconds: 500,
               ),
+              curve: Curves.easeOutCubic,
               begin: Offset(40, 40)),
     );
   }
