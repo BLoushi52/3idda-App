@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'item_model.dart';
+
 class Order {
   int id;
-  int item;
+  Item item;
   double price;
   String status;
   int order_duration;
@@ -30,7 +32,7 @@ class Order {
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
       id: map['id']?.toInt() ?? 0,
-      item: map['item']?.toInt() ?? 0,
+      item: Item.fromMap(map['item']),
       price: map['price']?.toDouble() ?? 0.0,
       status: map['status'] ?? '',
       order_duration: map['order_duration']?.toInt() ?? 0,

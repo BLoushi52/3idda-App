@@ -26,12 +26,16 @@ class _ItemDetailsState extends State<ItemDetails> {
   void initState() {
     super.initState();
 
-    category = context
-        .read<CategoryProvider>()
-        .categories
-        .firstWhere((element) => element.id == widget.item.category);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      category = context
+          .read<CategoryProvider>()
+          .categories
+          .firstWhere((element) => element.id == widget.item.category);
 
-    context.read<FavoriteProvider>().isFavorited(widget.item.id);
+      context.read<FavoriteProvider>().isFavorited(widget.item.id).then((_) {
+        setState(() {});
+      });
+    });
   }
 
   Widget build(BuildContext context) {
@@ -75,8 +79,8 @@ class _ItemDetailsState extends State<ItemDetails> {
                   isFavorite: context
                       .watch<FavoriteProvider>()
                       .isFavorite, // here we get it from api (As boolean)
-                  valueChanged: () {
-                    if (context.watch<FavoriteProvider>().isFavorite == false) {
+                  valueChanged: (_isFavorite) {
+                    if (context.read<FavoriteProvider>().isFavorite == false) {
                       context
                           .read<FavoriteProvider>()
                           .addFavorite(item: widget.item.id);
@@ -84,13 +88,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                       // print('Is Favourite $_isFavourite');
                     }
                     //wrap in futureBuilder
-                    else if (context.watch<FavoriteProvider>().isFavorite ==
-                        true) {
+                    else {
                       context
                           .read<FavoriteProvider>()
                           .deleteFavorite(widget.item.id);
                     }
+                    ;
                   },
+
                   iconSize: 30,
                 ),
               ),

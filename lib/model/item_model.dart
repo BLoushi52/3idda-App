@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import '../client.dart';
+
 class Item {
   int id;
-  int category;
+  String category;
   String title;
   String description;
   double price;
@@ -15,6 +17,18 @@ class Item {
     required this.price,
     required this.image,
   });
+
+  Future<bool> isFavorited() async {
+    try {
+      var response = await Client.dio.get('/api/myfavorite/check/$id/');
+
+      var body = response.data;
+      return body['is_exists'];
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -30,7 +44,7 @@ class Item {
   factory Item.fromMap(Map<String, dynamic> map) {
     return Item(
       id: map['id']?.toInt() ?? 0,
-      category: map['category']?.toInt() ?? 0,
+      category: map['category'] ?? "",
       title: map['title'] ?? '',
       description: map['description'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
