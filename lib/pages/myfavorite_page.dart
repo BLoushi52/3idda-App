@@ -5,7 +5,6 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/favorite_provider.dart';
 import 'package:rental_app/util/my_favorite.dart';
-
 import '../../constraints.dart';
 
 class MyFavoriteView extends StatefulWidget {
@@ -21,6 +20,11 @@ class _MyFavoriteViewState extends State<MyFavoriteView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<FavoriteProvider>().loadFavorites();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

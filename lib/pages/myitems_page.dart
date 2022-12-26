@@ -4,7 +4,6 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/myitems_provider.dart';
 import 'package:rental_app/util/my_item.dart';
-
 import '../../constraints.dart';
 
 class MyItemsView extends StatefulWidget {
@@ -20,6 +19,11 @@ class _MyItemsViewState extends State<MyItemsView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<MyItemProvider>().loadMyItems();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(

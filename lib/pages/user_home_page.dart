@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/providers/category_provider.dart';
-
 import '../../constraints.dart';
 import '../../providers/item_provider.dart';
 import '../../util/my_tile.dart';
@@ -22,6 +21,14 @@ class _UserHomeState extends State<UserHome> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<ItemProvider>().loadItems();
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myDefaultBackground,
