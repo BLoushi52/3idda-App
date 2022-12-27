@@ -59,7 +59,7 @@ class _UserHomeState extends State<UserHome> {
                       "Categories",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 18,
                         color: Colors.grey[700],
                         fontWeight: FontWeight.bold,
                       ),
@@ -70,7 +70,7 @@ class _UserHomeState extends State<UserHome> {
               Padding(
                 padding: EdgeInsets.only(left: 6),
                 child: Container(
-                  height: 116,
+                  height: 50,
                   decoration: BoxDecoration(),
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
@@ -92,20 +92,18 @@ class _UserHomeState extends State<UserHome> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8),
-                                  child: categories[index].id == -1
-                                      ? Image.asset(categories[index].image,
-                                          fit: BoxFit.cover, height: 70)
-                                      : Image.network(categories[index].image,
-                                          fit: BoxFit.cover, height: 70),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
-                                  width: 130,
-                                  child: Text(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    child: categories[index].id == -1
+                                        ? Image.asset(categories[index].image,
+                                            fit: BoxFit.cover, height: 30)
+                                        : Image.network(categories[index].image,
+                                            fit: BoxFit.cover, height: 30),
+                                  ),
+                                  Text(
                                     categories[index].title,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -115,8 +113,8 @@ class _UserHomeState extends State<UserHome> {
                                       overflow: TextOverflow.visible,
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         );
@@ -155,7 +153,7 @@ class _UserHomeState extends State<UserHome> {
                             "Items",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 18,
                               color: Colors.grey[700],
                               fontWeight: FontWeight.bold,
                             ),
