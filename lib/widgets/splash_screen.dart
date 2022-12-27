@@ -1,4 +1,5 @@
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,9 +38,10 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Image.asset(
-              'assets/3idda-logo-black.png',
-              width: 300,
+            child: SvgPicture.asset(
+              'assets/3idda-svg.svg',
+              color: Colors.black,
+              width: 330,
             ),
           ),
           SizedBox(
