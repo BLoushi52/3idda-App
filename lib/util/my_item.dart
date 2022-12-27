@@ -90,18 +90,7 @@ class _MyItemState extends State<MyItem> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 0),
                               child: Text(
-                                context
-                                    .watch<CategoryProvider>()
-                                    .categories
-                                    .firstWhere(
-                                      (element) =>
-                                          element.id == widget.item.category,
-                                      orElse: () => Category(
-                                          id: 2,
-                                          title: 'other',
-                                          image: 'image'),
-                                    )
-                                    .title,
+                                widget.item.category,
                                 style: TextStyle(
                                   color: Colors.grey[800],
                                   fontSize: 12,
