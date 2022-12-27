@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import '../model/address_model.dart';
+import '../providers/address_provider.dart';
+import '../widgets/date_picker.dart';
 
 class ConfirmationPage extends StatefulWidget {
-  const ConfirmationPage({super.key});
+  ConfirmationPage({super.key});
 
   @override
   State<ConfirmationPage> createState() => _ConfirmationPageState();
@@ -11,6 +16,14 @@ class ConfirmationPage extends StatefulWidget {
 
 class _ConfirmationPageState extends State<ConfirmationPage> {
   bool? isChecked = false;
+  Address? address;
+
+  String paymentDropDownValue = 'Cash on Delivery';
+
+  var paymentOptions = [
+    'Cash on Delivery',
+    'Debit or Credit Card',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +70,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Date:',
+                          'Dates:',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 17,
@@ -70,18 +83,19 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                   //* <-------  Date Picker Goes Here
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade400),
-                          ),
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[500])),
-                    ),
+                    child: DatePicker(),
+                    // child: TextFormField(
+                    //   decoration: InputDecoration(
+                    //       enabledBorder: const OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.black),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.grey.shade400),
+                    //       ),
+                    //       fillColor: Colors.grey.shade200,
+                    //       filled: true,
+                    //       hintStyle: TextStyle(color: Colors.grey[500])),
+                    // ),
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -103,18 +117,38 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                   //* <-------  Address Dropdown Goes Here
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade400),
-                          ),
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[500])),
-                    ),
+                    child: DropdownButton<Address>(
+                        icon: Icon(
+                          Icons.arrow_drop_down_circle_outlined,
+                          color: Colors.grey[600],
+                          size: 30,
+                        ),
+                        isExpanded: true,
+                        hint: Text("Address"),
+                        value: address,
+                        items: context
+                            .watch<AddressProvider>()
+                            .addresses
+                            .map(buildMenuItem)
+                            .toList(),
+                        onChanged: (value) => setState(
+                              () {
+                                this.address = value;
+                                print(value);
+                              },
+                            )),
+                    // child: TextFormField(
+                    //   decoration: InputDecoration(
+                    //       enabledBorder: const OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.black),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.grey.shade400),
+                    //       ),
+                    //       fillColor: Colors.grey.shade200,
+                    //       filled: true,
+                    //       hintStyle: TextStyle(color: Colors.grey[500])),
+                    // ),
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -136,18 +170,44 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                   //* <-------  Payment Method Dropdown Goes Here
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade400),
-                          ),
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[500])),
+                    child: DropdownButton(
+                      isExpanded: true,
+                      hint: Text("Payment Type"),
+                      value: paymentDropDownValue,
+                      icon: Icon(
+                        Icons.arrow_drop_down_circle_outlined,
+                        color: Colors.grey[600],
+                        size: 30,
+                      ),
+                      items: paymentOptions.map(
+                        (String paymentOptions) {
+                          return DropdownMenuItem(
+                            value: paymentOptions,
+                            child: Text(paymentOptions),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? newValue) {
+                        setState(
+                          () {
+                            paymentDropDownValue = newValue!;
+                          },
+                        );
+                      },
                     ),
+
+                    // child: TextFormField(
+                    //   decoration: InputDecoration(
+                    //       enabledBorder: const OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.black),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.grey.shade400),
+                    //       ),
+                    //       fillColor: Colors.grey.shade200,
+                    //       filled: true,
+                    //       hintStyle: TextStyle(color: Colors.grey[500])),
+                    // ),
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -224,4 +284,17 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
       ),
     );
   }
+
+  DropdownMenuItem<Address> buildMenuItem(Address item) => DropdownMenuItem(
+        value: item,
+        child: Row(
+          children: [
+            Text('${item.district},'),
+            Text(' ${item.area},'),
+            Text(' ${item.block},'),
+            Text(' ${item.street},'),
+            Text(' ${item.house}.'),
+          ],
+        ),
+      );
 }
