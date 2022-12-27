@@ -5,8 +5,10 @@ import '../client.dart';
 int counter = 0;
 
 class ItemProvider extends ChangeNotifier {
+  static int ALL_CATEGORY = -1;
+
   List<Item> items = [];
-  int? selectedCategory;
+  int selectedCategory = ALL_CATEGORY;
 
   bool isLoading = false;
 
@@ -26,7 +28,7 @@ class ItemProvider extends ChangeNotifier {
       notifyListeners();
 
       var response = await Client.dio.get("/api/item/", queryParameters: {
-        if (selectedCategory != null) "category_id": selectedCategory,
+        if (selectedCategory != ALL_CATEGORY) "category_id": selectedCategory,
       });
 
       var body = response.data as List;
