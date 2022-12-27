@@ -97,6 +97,7 @@ class _UserHomeState extends State<UserHome> {
                               child: Row(
                                 children: [
                                   Container(
+                                    padding: EdgeInsets.only(right: 4),
                                     child: categories[index].id == -1
                                         ? Image.asset(categories[index].image,
                                             fit: BoxFit.cover, height: 30)
@@ -146,7 +147,7 @@ class _UserHomeState extends State<UserHome> {
                       ),
                     )
                   : Padding(
-                      padding: const EdgeInsets.only(left: 12, top: 8),
+                      padding: EdgeInsets.only(left: 12, top: 8),
                       child: Row(
                         children: [
                           Text(
