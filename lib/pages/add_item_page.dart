@@ -107,6 +107,7 @@ class _AddItemPageState extends State<AddItemPage> {
                         onChanged: (value) => setState(
                               () {
                                 this.value = value;
+                                print(value);
                               },
                             )),
                   ),

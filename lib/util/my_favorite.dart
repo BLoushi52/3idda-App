@@ -30,8 +30,8 @@ class _MyFavoriteState extends State<MyFavorite> {
               children: [
                 SlidableAction(
                   label: 'Delete',
-                  onPressed: (context) {
-                    context
+                  onPressed: (context) async {
+                    await context
                         .read<FavoriteProvider>()
                         .deleteFavorite(id: widget.item.id);
                   },

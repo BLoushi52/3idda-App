@@ -38,7 +38,7 @@ class _EditItemPageState extends State<EditItemPage> {
     value = context
         .read<CategoryProvider>()
         .categories
-        .firstWhere((element) => element.id == widget.item.category);
+        .firstWhere((element) => element.title == widget.item.category);
 
     // ingredientController.text = widget.recipe.ingredient as String;
   }

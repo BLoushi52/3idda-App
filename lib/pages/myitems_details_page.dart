@@ -17,7 +17,7 @@ class ItemDetails extends StatefulWidget {
 }
 
 class _ItemDetailsState extends State<ItemDetails> {
-  late Future<bool> isFavorite;
+  late Future<bool> isFavoriteFuture;
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _ItemDetailsState extends State<ItemDetails> {
       // });
     });
 
-    isFavorite = widget.item.isFavorited();
+    isFavoriteFuture = widget.item.isFavorited();
     ;
   }
 
@@ -71,7 +71,7 @@ class _ItemDetailsState extends State<ItemDetails> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: FutureBuilder(
-                    future: isFavorite,
+                    future: isFavoriteFuture,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState != ConnectionState.done) {
                         return Center(child: CircularProgressIndicator());
@@ -81,8 +81,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         isFavorite: snapshot
                             .data, // here we get it from api (As boolean)
                         valueChanged: (_isFavorite) {
-                          if (context.read<FavoriteProvider>().isFavorite ==
-                              false) {
+                          if (snapshot.data == false) {
                             context
                                 .read<FavoriteProvider>()
                                 .addFavorite(item: widget.item.id);

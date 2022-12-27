@@ -48,7 +48,7 @@ class FavoriteProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteFavorite({
+  Future<void> deleteFavorite({
     required int id,
   }) async {
     await Client.dio.delete("/api/myfavorite/delete/$id/");
