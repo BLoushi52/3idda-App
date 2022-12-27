@@ -19,6 +19,7 @@ import 'package:rental_app/pages/myaddress_page.dart';
 import 'package:rental_app/pages/myfavorite_page.dart';
 import 'package:rental_app/pages/myitems_page.dart';
 import 'package:rental_app/pages/myitems_details_page.dart';
+import 'package:rental_app/util/custom_material_colors.dart';
 import '../widgets/splash_screen.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import 'package:rental_app/providers/item_provider.dart';
@@ -144,6 +145,9 @@ class MyApp extends StatelessWidget {
         // darkTheme: ThemeData.dark(),
         theme: ThemeData(
             fontFamily: "Roboto",
+            primarySwatch: CustomMaterialColor.createMaterialColor(
+              Color.fromRGBO(251, 192, 45, 1),
+            ),
             primaryColor: Colors.yellow[700],
             floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: Colors.yellow[700],
