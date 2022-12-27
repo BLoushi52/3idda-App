@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
+import 'package:rental_app/model/category_model.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import '../../constraints.dart';
 import '../../providers/item_provider.dart';
@@ -30,6 +31,13 @@ class _UserHomeState extends State<UserHome> {
   }
 
   Widget build(BuildContext context) {
+    var categories = [
+      Category(
+          id: ItemProvider.ALL_CATEGORY,
+          title: "View All",
+          image: "assets/view_all.png"),
+      ...context.watch<CategoryProvider>().categories
+    ];
     return Scaffold(
       backgroundColor: myDefaultBackground,
       body: Padding(
@@ -67,12 +75,8 @@ class _UserHomeState extends State<UserHome> {
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
                       scrollDirection: Axis.horizontal,
-                      itemCount:
-                          context.watch<CategoryProvider>().categories.length,
+                      itemCount: categories.length,
                       itemBuilder: (context, index) {
-                        var categories =
-                            context.watch<CategoryProvider>().categories;
-
                         var selectedCategory =
                             context.read<ItemProvider>().selectedCategory;
 
@@ -92,8 +96,11 @@ class _UserHomeState extends State<UserHome> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8),
-                                  child: Image.network(categories[index].image,
-                                      fit: BoxFit.cover, height: 70),
+                                  child: categories[index].id == -1
+                                      ? Image.asset(categories[index].image,
+                                          fit: BoxFit.cover, height: 70)
+                                      : Image.network(categories[index].image,
+                                          fit: BoxFit.cover, height: 70),
                                 ),
                                 Container(
                                   padding: EdgeInsets.symmetric(vertical: 8),
