@@ -3,19 +3,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rental_app/model/item_model.dart';
 
-class MyTile extends StatefulWidget {
+class MyTile extends StatelessWidget {
   final Item item;
   const MyTile({required this.item, super.key});
-
-  @override
-  State<MyTile> createState() => _MyTileState();
-}
-
-class _MyTileState extends State<MyTile> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   Widget build(BuildContext context) {
     return Column(
@@ -31,7 +21,7 @@ class _MyTileState extends State<MyTile> {
               ),
               child: InkWell(
                 onTap: () {
-                  context.go('/itemdetails', extra: widget.item);
+                  context.go('/itemdetails', extra: item);
                 },
                 child: Row(
                   children: [
@@ -44,7 +34,7 @@ class _MyTileState extends State<MyTile> {
                             BorderRadius.horizontal(left: Radius.circular(12)),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(widget.item.image),
+                          image: NetworkImage(item.image),
                         ),
                       ),
                     ),
@@ -62,7 +52,7 @@ class _MyTileState extends State<MyTile> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    widget.item.category,
+                                    item.category,
                                     style: TextStyle(
                                       color: Colors.grey[800],
                                       fontSize: 12,
@@ -89,31 +79,31 @@ class _MyTileState extends State<MyTile> {
                                 ],
                               ),
                               Text(
-                                widget.item.title,
+                                item.title,
                                 maxLines: 2,
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.black87,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w600,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Text(
-                                widget.item.description,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 13,
-                                ),
-                              ),
+                              // Text(
+                              //   item.description,
+                              //   maxLines: 2,
+                              //   overflow: TextOverflow.ellipsis,
+                              //   style: TextStyle(
+                              //     color: Colors.blueGrey,
+                              //     fontSize: 13,
+                              //   ),
+                              // ),
                               Row(
                                 children: [
                                   Text(
-                                    "KD ${widget.item.price}",
+                                    "KD ${item.price}",
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 13,
+                                      fontSize: 14,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.bold,
                                     ),

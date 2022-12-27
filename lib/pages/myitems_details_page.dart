@@ -78,6 +78,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                       }
 
                       return FavoriteButton(
+                        iconDisabledColor: Colors.black,
                         isFavorite: snapshot
                             .data, // here we get it from api (As boolean)
                         valueChanged: (_isFavorite) {
