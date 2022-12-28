@@ -135,7 +135,10 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            context.push("/contactus");
+            Navigator.pop(context);
+          },
         ),
         Spacer(),
         if (context.watch<AuthProvider>().username != null)

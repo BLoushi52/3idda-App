@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:rental_app/model/address_model.dart';
 import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/pages/confirmation_page.dart';
+import 'package:rental_app/pages/contact_us.dart';
 import 'package:rental_app/pages/favorite_detail_page.dart';
 import 'package:rental_app/providers/address_provider.dart';
 import 'package:rental_app/providers/auth_provider.dart';
@@ -119,6 +120,10 @@ final router = GoRouter(
       builder: (context, state) => ConfirmationPage(
         item: state.extra as Item,
       ),
+    ),
+    GoRoute(
+      path: '/contactus',
+      builder: (context, state) => ContactUsPage(),
     ),
   ],
 );
