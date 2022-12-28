@@ -25,6 +25,14 @@ class _MyAddressState extends State<MyAddress> {
       // height: 133,
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 26.0),
+            child: Divider(
+              thickness: 0.5,
+              height: 0,
+              color: Colors.grey[500],
+            ),
+          ),
           Slidable(
             startActionPane: ActionPane(
               extentRatio: 0.3,
@@ -62,7 +70,6 @@ class _MyAddressState extends State<MyAddress> {
               },
               child: Wrap(
                 children: [
-                  SizedBox(width: 15),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -87,9 +94,10 @@ class _MyAddressState extends State<MyAddress> {
               ),
             ),
           ),
-          Container(
-            height: 3,
-            color: Colors.grey[200],
+          Divider(
+            thickness: 0.5,
+            height: 0,
+            color: Colors.grey[500],
           ),
         ],
       ),

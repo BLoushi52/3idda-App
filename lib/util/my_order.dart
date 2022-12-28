@@ -155,10 +155,6 @@ class _MyOrderState extends State<MyOrder> {
               ),
             ),
           ),
-          Container(
-            height: 1,
-            color: Colors.grey[200],
-          )
         ],
       ),
     );
