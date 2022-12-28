@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_app/model/category_model.dart';
+import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/category_provider.dart';
 import '../../constraints.dart';
 import '../../providers/item_provider.dart';
@@ -127,7 +129,8 @@ class _UserHomeState extends State<UserHome> {
 
               //* tiles below it
 
-              context.watch<ItemProvider>().items.length == 0
+              context.watch<ItemProvider>().items.length == 0 &&
+                      context.watch<ItemProvider>().isLoading == false
                   ? Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -162,17 +165,23 @@ class _UserHomeState extends State<UserHome> {
                         ],
                       ),
                     ),
-              Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: context.watch<ItemProvider>().items.length,
-                  itemBuilder: (context, index) {
-                    return MyTile(
-                      item: context.watch<ItemProvider>().items[index],
-                    );
-                  },
-                ),
-              ),
+              context.watch<ItemProvider>().isLoading
+                  ? Expanded(
+                      child: Center(
+                        child: CupertinoActivityIndicator(),
+                      ),
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: context.watch<ItemProvider>().items.length,
+                        itemBuilder: (context, index) {
+                          return MyTile(
+                            item: context.watch<ItemProvider>().items[index],
+                          );
+                        },
+                      ),
+                    ),
             ],
           ),
         ),

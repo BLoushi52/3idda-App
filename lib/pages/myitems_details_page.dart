@@ -215,7 +215,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Rental Plans:',
+                              'Rental Price:',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
