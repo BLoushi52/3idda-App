@@ -9,6 +9,8 @@ class Order {
   String status;
   int order_duration;
   int address;
+  String start_date;
+  String end_date;
   Order({
     required this.id,
     required this.item,
@@ -16,16 +18,20 @@ class Order {
     required this.status,
     required this.order_duration,
     required this.address,
+    required this.start_date,
+    required this.end_date,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'item': item,
+      'item': item.toMap(),
       'price': price,
       'status': status,
       'order_duration': order_duration,
       'address': address,
+      'start_date': start_date,
+      'end_date': end_date,
     };
   }
 
@@ -37,6 +43,8 @@ class Order {
       status: map['status'] ?? '',
       order_duration: map['order_duration']?.toInt() ?? 0,
       address: map['address']?.toInt() ?? 0,
+      start_date: map['start_date'] ?? '',
+      end_date: map['end_date'] ?? '',
     );
   }
 

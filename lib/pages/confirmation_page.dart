@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:rental_app/providers/myorder_provider.dart';
 
 import '../model/address_model.dart';
 import '../providers/address_provider.dart';
@@ -263,7 +264,19 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                       foregroundColor: Colors.black,
                       padding: EdgeInsets.symmetric(horizontal: 80),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      // form
+                      await context.read<MyOrderProvider>().addOrder(
+                            item: 3,
+                            price: 1,
+                            status: "rent",
+                            order_duration: 6,
+                            address: 1,
+                            start_date: "2020-10-20",
+                            end_date: "2020-10-22",
+                          );
+                      context.go('/home');
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 55, vertical: 10),
