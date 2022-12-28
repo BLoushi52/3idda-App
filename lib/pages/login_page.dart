@@ -61,6 +61,8 @@ class LoginPage extends StatelessWidget {
                         'Forgot Password?',
                         style: TextStyle(
                           fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -71,12 +73,8 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 35),
               Padding(
                 padding: const EdgeInsets.only(top: 22),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellow[700],
-                    foregroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(horizontal: 80),
-                  ),
+                child: CupertinoButton.filled(
+                  padding: EdgeInsets.symmetric(horizontal: 80),
                   onPressed: () async {
                     var success = await context.read<AuthProvider>().login(
                         username: usernameController.text,
@@ -193,6 +191,8 @@ class LoginPage extends StatelessWidget {
                           'Register now',
                           style: TextStyle(
                             fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
@@ -214,6 +214,8 @@ class LoginPage extends StatelessWidget {
                           'Start Exploring',
                           style: TextStyle(
                             fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
