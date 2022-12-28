@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import 'package:rental_app/model/item_model.dart';
 import 'package:rental_app/providers/myorder_provider.dart';
 
 import '../model/address_model.dart';
@@ -9,7 +11,11 @@ import '../providers/address_provider.dart';
 import '../widgets/date_picker.dart';
 
 class ConfirmationPage extends StatefulWidget {
-  ConfirmationPage({super.key});
+  ConfirmationPage({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
+  final Item item;
 
   @override
   State<ConfirmationPage> createState() => _ConfirmationPageState();
@@ -64,6 +70,28 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        'Item',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        widget.item.title,
+                        style: TextStyle(),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -267,8 +295,8 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                     onPressed: () async {
                       // form
                       await context.read<MyOrderProvider>().addOrder(
-                            item: 3,
-                            price: 1,
+                            item: widget.item.id,
+                            price: 2,
                             status: "rent",
                             order_duration: 6,
                             address: 1,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/myorder_provider.dart';
 
 class DatePicker extends StatefulWidget {
   const DatePicker({super.key});
@@ -30,7 +33,7 @@ class _DatePickerState extends State<DatePicker> {
                       "From: ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(DateFormat.yMMMEd().format(selectedDates.start)),
+                    Text(DateFormat("yyyy-MM-dd").format(selectedDates.start)),
                   ],
                 ),
               )),
@@ -44,7 +47,7 @@ class _DatePickerState extends State<DatePicker> {
                       "To: ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(DateFormat.yMMMEd().format(selectedDates.end)),
+                    Text(DateFormat("yyyy-MM-dd").format(selectedDates.end)),
                   ],
                 ),
               )),
@@ -97,7 +100,13 @@ class _DatePickerState extends State<DatePicker> {
               if (dateTimeRange != null) {
                 setState(() {
                   selectedDates = dateTimeRange;
+                  context.read<MyOrderProvider>().chooseDate(
+                      DateFormat("yyyy-MM-dd").format(selectedDates.start),
+                      DateFormat("yyyy-MM-dd").format(selectedDates.end));
                 });
+
+                print(context.read<MyOrderProvider>().fromDate);
+                print(context.read<MyOrderProvider>().toDate);
               }
             },
           )
