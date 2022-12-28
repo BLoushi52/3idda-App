@@ -32,7 +32,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
         toolbarHeight: 40,
         elevation: 0,
         leadingWidth: 68,
-        title: Text("Contact US"),
+        title: Text("Contact Us"),
         backgroundColor: Colors.grey[300],
         foregroundColor: Colors.black,
         leading: Padding(
