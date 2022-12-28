@@ -179,10 +179,6 @@ class _MyItemState extends State<MyItem> {
               ),
             ),
           ),
-          Container(
-            height: 1,
-            color: Colors.grey[200],
-          )
         ],
       ),
     );

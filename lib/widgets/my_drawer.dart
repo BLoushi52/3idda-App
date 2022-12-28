@@ -158,6 +158,7 @@ class _MyDrawerState extends State<MyDrawer> {
             onTap: () {
               context.read<AuthProvider>().logout();
               Navigator.pop(context);
+              context.go("/login");
             },
           ),
       ]),

@@ -22,7 +22,10 @@ class UserAccount extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          Divider(
+            thickness: 0.5,
+            color: Colors.grey[500],
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Row(
@@ -34,11 +37,14 @@ class UserAccount extends StatelessWidget {
                 ),
                 Container(
                   width: 50,
-                  height: 30,
+                  height: 40,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.yellow[700],
                       foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                     onPressed: () {
                       context.push('/myaddress');
@@ -52,12 +58,9 @@ class UserAccount extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Divider(
-              thickness: 0.5,
-              color: Colors.grey[500],
-            ),
+          Divider(
+            thickness: 0.5,
+            color: Colors.grey[500],
           ),
         ],
       ),
