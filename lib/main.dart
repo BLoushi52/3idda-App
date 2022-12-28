@@ -116,7 +116,9 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/confirm',
-      builder: (context, state) => ConfirmationPage(),
+      builder: (context, state) => ConfirmationPage(
+        item: state.extra as Item,
+      ),
     ),
   ],
 );

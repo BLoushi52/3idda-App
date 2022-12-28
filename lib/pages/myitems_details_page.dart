@@ -355,7 +355,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                   ),
                   onPressed: () {
-                    context.go('/confirm');
+                    context.go('/confirm', extra: widget.item);
                   },
                   child: Text(
                     "Rent Item",

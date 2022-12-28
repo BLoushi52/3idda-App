@@ -9,8 +9,17 @@ class MyOrderProvider extends ChangeNotifier {
 
   bool isLoading = false;
 
+  String? fromDate;
+  String? toDate;
+
   MyOrderProvider() {
     loadMyOrders();
+  }
+
+  void chooseDate(String fromDate, String toDate) {
+    this.fromDate = fromDate;
+    this.toDate = toDate;
+    notifyListeners();
   }
 
   Future<void> loadMyOrders() async {
@@ -42,7 +51,7 @@ class MyOrderProvider extends ChangeNotifier {
 
   Future<void> addOrder({
     required int item,
-    required int price,
+    required double price,
     required String status,
     required int order_duration,
     required int address,
@@ -56,8 +65,8 @@ class MyOrderProvider extends ChangeNotifier {
           "status": status,
           "order_duration": order_duration,
           "address": address,
-          "start_date": start_date,
-          "end_date": end_date,
+          "start_date": fromDate,
+          "end_date": toDate,
         }));
 
     loadMyOrders();
