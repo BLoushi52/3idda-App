@@ -73,15 +73,18 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Text(
                         'Item',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          fontSize: 17,
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 10),
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
@@ -92,7 +95,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
@@ -108,7 +111,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 10),
                   //* <-------  Date Picker Goes Here
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -267,7 +270,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                     child: Row(
                       children: [
                         Checkbox(
-                          activeColor: Colors.grey[600],
+                          activeColor: Colors.yellow[700],
                           value: isChecked,
                           onChanged: (newBool) {
                             setState(() {
