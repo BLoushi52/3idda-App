@@ -113,13 +113,16 @@ class _ItemDetailsState extends State<ItemDetails> {
           children: [
             Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 0.0),
-                  child: Image.network(
-                    widget.item.image,
-                    height: 300,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 0.0),
+                    child: Image.network(
+                      widget.item.image,
+                      height: 300,
+                      fit: BoxFit.contain,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
                 Container(
