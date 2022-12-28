@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,6 +32,29 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
     'Cash on Delivery',
     'Debit or Credit Card',
   ];
+
+  void tosfunc() async {
+    // form
+    await context.read<MyOrderProvider>().addOrder(
+          item: widget.item.id,
+          price: 12,
+          status: "Pending",
+          order_duration: 6,
+          address: 1,
+          start_date: "2020-10-20",
+          end_date: "2020-10-22",
+        );
+    CoolAlert.show(
+        context: context,
+        type: CoolAlertType.success,
+        text: "Your order was successful!",
+        backgroundColor: Color(0xFFFBC02D),
+        confirmBtnTextStyle:
+            TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        confirmBtnColor: Color(0xFFFBC02D),
+        confirmBtnText: "Done",
+        onConfirmBtnTap: () => context.go('/home'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,15 +97,18 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Text(
                         'Item',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          fontSize: 17,
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 10),
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
@@ -92,7 +119,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
@@ -108,7 +135,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 10),
                   //* <-------  Date Picker Goes Here
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -239,35 +266,36 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                     // ),
                   ),
                   SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Terms & Conditions:',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        child: Text(
-                            'These General Terms and Conditions of Sale (“GTCS”) apply to all sales of goods by us notwithstanding any conflicting, contrary or additional terms and conditions in any purchase order or other communication from you. No such conflicting, contrary or additional terms and conditions shall be deemed accepted by us unless and until we expressly confirm our acceptance in writing.'),
-                      )),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         'Terms & Conditions:',
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 17,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // SizedBox(height: 10),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                  //   child: Container(
+                  //     child: Text(
+                  //         'These General Terms and Conditions of Sale (“GTCS”) apply to all sales of goods by us notwithstanding any conflicting, contrary or additional terms and conditions in any purchase order or other communication from you. No such conflicting, contrary or additional terms and conditions shall be deemed accepted by us unless and until we expressly confirm our acceptance in writing.'),
+                  //   ),
+                  // ),
                   SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
                       children: [
                         Checkbox(
-                          activeColor: Colors.grey[600],
+                          activeColor: Colors.yellow[700],
                           value: isChecked,
                           onChanged: (newBool) {
                             setState(() {
@@ -276,35 +304,32 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                           },
                         ),
                         Expanded(
-                          child: Text(
-                            'By selecting, you agree to 3idda Terms of Conditions',
-                            style: TextStyle(
-                                color: Colors.grey[600], fontSize: 14),
+                          child: RichText(
+                            text: TextSpan(
+                              text: "By selecting, you agree to 3idda",
+                              style: TextStyle(
+                                color: Colors.grey[800],
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: ' Terms of Conditions',
+                                    style: TextStyle(color: Colors.blue)),
+                              ],
+                            ),
                           ),
                         )
                       ],
                     ),
                   ),
                   SizedBox(height: 40),
+
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.yellow[700],
                       foregroundColor: Colors.black,
                       padding: EdgeInsets.symmetric(horizontal: 80),
                     ),
-                    onPressed: () async {
-                      // form
-                      await context.read<MyOrderProvider>().addOrder(
-                            item: widget.item.id,
-                            price: 2,
-                            status: "rent",
-                            order_duration: 6,
-                            address: 1,
-                            start_date: "2020-10-20",
-                            end_date: "2020-10-22",
-                          );
-                      context.go('/home');
-                    },
+                    onPressed: isChecked! ? tosfunc : null,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 55, vertical: 10),

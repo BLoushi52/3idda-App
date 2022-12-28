@@ -60,109 +60,122 @@ class _MyItemState extends State<MyItem> {
                 ),
               ],
             ),
-            child: CupertinoButton(
-              onPressed: () {
-                context.push('/itemdetails', extra: widget.item);
-              },
-              child: Row(
-                children: [
-                  Container(
-                    height: 110, //*  <------------ Can reduce to 90/90
-                    width: 110, //*   <------------ if 'Category' is removed.
-                    decoration: BoxDecoration(
-                      color: Colors.blueGrey,
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(widget.item.image),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              padding: EdgeInsets.zero,
+              child: Card(
+                margin: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    context.push('/itemdetails', extra: widget.item);
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 120, //*  <------------ Can reduce to 90/90
+                        width:
+                            130, //*   <------------ if 'Category' is removed.
+                        decoration: BoxDecoration(
+                          color: Colors.blueGrey,
+                          borderRadius: BorderRadius.horizontal(
+                              left: Radius.circular(12)),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(widget.item.image),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 0),
-                              child: Text(
-                                widget.item.category,
-                                style: TextStyle(
-                                  color: Colors.grey[800],
-                                  fontSize: 12,
-                                  // fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w400,
+                      Expanded(
+                        child: Container(
+                          height: 120, //*  <------------ Can reduce to 90/90
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 6),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      widget.item.category,
+                                      style: TextStyle(
+                                        color: Colors.grey[800],
+                                        fontSize: 12,
+                                        // fontStyle: FontStyle.italic,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.yellow[700],
+                                      size: 19,
+                                    ),
+                                    Text(
+                                      '3.5',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    )
+                                  ],
                                 ),
-                              ),
+                                Text(
+                                  widget.item.title,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                // Text(
+                                //   item.description,
+                                //   maxLines: 2,
+                                //   overflow: TextOverflow.ellipsis,
+                                //   style: TextStyle(
+                                //     color: Colors.blueGrey,
+                                //     fontSize: 13,
+                                //   ),
+                                // ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "KD ${widget.item.price}",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      " / Day",
+                                      style: TextStyle(
+                                        color: Colors.blueGrey[500],
+                                        fontSize: 12,
+                                        fontStyle: FontStyle.normal,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Spacer(),
-                            Icon(
-                              Icons.star,
-                              color: Colors.yellow[700],
-                              size: 19,
-                            ),
-                            Text(
-                              '3.5',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            )
-                          ],
-                        ),
-                        Text(
-                          widget.item.title,
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          widget.item.description,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontSize: 13,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "KD ${widget.item.price}",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 13,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              " / Day",
-                              style: TextStyle(
-                                color: Colors.blueGrey[500],
-                                fontSize: 12,
-                                fontStyle: FontStyle.normal,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

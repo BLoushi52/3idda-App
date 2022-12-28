@@ -345,14 +345,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                 ),
               ],
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.yellow[700],
                     foregroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 90),
                   ),
                   onPressed: () {
                     context.go('/confirm', extra: widget.item);

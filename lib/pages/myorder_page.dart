@@ -37,9 +37,8 @@ class _MyOrderViewState extends State<MyOrderView> {
           children: [
             // mySearch,
 
-            SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(top: 20, left: 20),
               child: Text(
                 'My Rentals',
                 style: TextStyle(
@@ -49,7 +48,6 @@ class _MyOrderViewState extends State<MyOrderView> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
 
             //*  category tabs
 
