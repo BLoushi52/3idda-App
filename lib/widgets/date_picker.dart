@@ -69,7 +69,7 @@ class _DatePickerState extends State<DatePicker> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.yellow[700],
               foregroundColor: Colors.black,
-              padding: EdgeInsets.symmetric(horizontal: 80),
+              padding: EdgeInsets.symmetric(horizontal: 116, vertical: 10),
             ),
             child: Text(
               "Choose Dates",
