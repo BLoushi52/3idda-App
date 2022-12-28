@@ -20,17 +20,79 @@ class _DatePickerState extends State<DatePicker> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Text("From: ${DateFormat('yyyy-MM-dd').format(selectedDates.start)}"),
-          Text("To: ${DateFormat('yyyy-MM-dd').format(selectedDates.end)}"),
-          Text("Duration:${selectedDates.duration.inDays} days"),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "From: ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(DateFormat.yMMMEd().format(selectedDates.start)),
+                  ],
+                ),
+              )),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "To: ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(DateFormat.yMMMEd().format(selectedDates.end)),
+                  ],
+                ),
+              )),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Duration : ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text("${selectedDates.duration.inDays} days"),
+                  ],
+                ),
+              )),
           ElevatedButton(
-            child: Text("choose Dates"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.yellow[700],
+              foregroundColor: Colors.black,
+              padding: EdgeInsets.symmetric(horizontal: 80),
+            ),
+            child: Text(
+              "Choose Dates",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             onPressed: () async {
               final DateTimeRange? dateTimeRange = await showDateRangePicker(
                 context: context,
-                initialDateRange: selectedDates,
                 firstDate: DateTime(2000),
                 lastDate: DateTime(3000),
+                initialDateRange: selectedDates,
+                builder: (context, child) {
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: ColorScheme.light(
+                        primary: Colors.amberAccent, // <-- SEE HERE
+                        onPrimary: Colors.black, // <-- SEE HERE
+                        onSurface: Colors.black, // <-- SEE HERE
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
               );
               if (dateTimeRange != null) {
                 setState(() {
