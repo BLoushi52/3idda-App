@@ -62,6 +62,40 @@ class UserAccount extends StatelessWidget {
             thickness: 0.5,
             color: Colors.grey[500],
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Change My Password',
+                  style: TextStyle(fontSize: 17),
+                ),
+                Container(
+                  width: 50,
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.yellow[700],
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Icon(
+                      Icons.chevron_right,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            thickness: 0.5,
+            color: Colors.grey[500],
+          ),
         ],
       ),
     );
