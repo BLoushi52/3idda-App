@@ -20,19 +20,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Position? _position;
   List<Placemark>? placemarks;
 
-  void _getCurrentLocation() async {
+  Future<void> _getCurrentLocation() async {
     Position position = await _determinePosition();
     placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
 
-    setState(() {
-      _position = position;
-
-      print(placemarks);
-    });
+    setState(() {});
   }
 
   Future<Position> _determinePosition() async {
@@ -69,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _getCurrentLocation;
+    _getCurrentLocation();
   }
 
   Widget build(BuildContext context) {
@@ -109,13 +104,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 )
               ],
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.pin_drop_outlined),
-                  SizedBox(width: 5),
-                  _position != null && placemarks != null
-                      ? Container(
+              title: placemarks != null
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.place_outlined),
+                        Container(
                           width: 190,
                           child: AutoSizeText(
                             '${placemarks?.first.street}',
@@ -124,10 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
-                        )
-                      : AutoSizeText('No Location Data'),
-                ],
-              ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
               backgroundColor: Colors.grey[300],
               foregroundColor: Colors.black,
               elevation: 0,
