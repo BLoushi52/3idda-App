@@ -42,10 +42,12 @@ class MyOrderProvider extends ChangeNotifier {
 
   Future<void> addOrder({
     required int item,
-    required String price,
+    required int price,
     required String status,
     required int order_duration,
     required int address,
+    required String start_date,
+    required String end_date,
   }) async {
     var response = await Client.dio.post("/api/order/create/",
         data: FormData.fromMap({
@@ -54,6 +56,8 @@ class MyOrderProvider extends ChangeNotifier {
           "status": status,
           "order_duration": order_duration,
           "address": address,
+          "start_date": start_date,
+          "end_date": end_date,
         }));
 
     loadMyOrders();

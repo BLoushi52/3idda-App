@@ -20,14 +20,15 @@ class _DatePickerState extends State<DatePicker> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Text("From:${DateFormat.yMMMEd().format(selectedDates.start)} days"),
-          Text("From:${DateFormat.yMMMEd().format(selectedDates.end)} days"),
+          Text("From: ${DateFormat('yyyy-MM-dd').format(selectedDates.start)}"),
+          Text("To: ${DateFormat('yyyy-MM-dd').format(selectedDates.end)}"),
           Text("Duration:${selectedDates.duration.inDays} days"),
           ElevatedButton(
             child: Text("choose Dates"),
             onPressed: () async {
               final DateTimeRange? dateTimeRange = await showDateRangePicker(
                 context: context,
+                initialDateRange: selectedDates,
                 firstDate: DateTime(2000),
                 lastDate: DateTime(3000),
               );
